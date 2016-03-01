@@ -2,7 +2,7 @@
  * @(#)Question.java 2/29/16.
  * Copyright (c) 2016 The Boeing Company All rights reserved.
  */
-package main.java.com.letrangerv.vtester.domain;
+package com.letrangerv.vtester.domain;
 
 /**
  * @author VStrokan
