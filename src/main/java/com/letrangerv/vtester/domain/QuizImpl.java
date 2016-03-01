@@ -16,6 +16,14 @@ public class QuizImpl implements Quiz {
     private int m_maxScore;
     private int m_totalScore;
 
+    public void addQuestion(Question q) {
+        m_questions.add(q);
+    }
+
+    public void removeQuestion(Question q) {
+        m_questions.remove(q);
+    }
+
     @Override
     public int calculateResult() {
         m_totalScore = m_questions.stream().mapToInt(Question::evaluate).reduce(0, Integer::sum);

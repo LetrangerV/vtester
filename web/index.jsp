@@ -11,6 +11,17 @@
     <title></title>
   </head>
   <body>
-
+  <div class="question">
+    <select name="question_type">
+      <option value="one_answer" selected>Выбор 1 варианта ответа</option>
+      <option value="multi_answer">Выбор нескольких ответов</option>
+      <option value="mapping">Установить соответствие</option>
+      <option value="user_input">Свободный ответ</option>
+    </select>
+    <input type="text" name="question_text"/>     <!--TODO ADD LABELS-->
+    <input type="text" name="option_text"/>
+    <input type="radio" name="is-right"/>
+    <input type="submit" value="Добавить вопрос"/>
+  </div>
   </body>
 </html>

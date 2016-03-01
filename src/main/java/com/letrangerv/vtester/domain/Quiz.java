@@ -10,6 +10,8 @@ package main.java.com.letrangerv.vtester.domain;
  * @since 2/29/16
  */
 public interface Quiz {
+    void addQuestion(Question q);
+    void removeQuestion(Question q);
     int calculateResult();
     int calculateMaxScore();
 }
