@@ -12,11 +12,16 @@
 </head>
 <body>
 
+<div>
+  <span>Число вопросов</span>
+  <input type="number" value="10"/>
+  <span>Число вариантов ответа</span>
+  <input type="number" value="4"/>
+</div>
 <form action="quiz" method="POST">
-
 <div>
   <button class="add-question-btn" type="button">Добавить вопрос</button>    <!--todo maybe predefine number of questions or variants -->
-</div>
+</div>                                  <!--TODO remove 1 default question, implement templating logic instead-->
 <div class="questions">
   <div class="question">
     <select name="question_type">
@@ -51,8 +56,6 @@
     </div>
   </div>
 </div>
-<%--<form action="quiz" method="POST">--%>
-  <%--<input type="submit" value="Сохранить тест"/>--%>
 </form>
 
 <script src="question.js"></script>
