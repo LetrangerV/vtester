@@ -4,6 +4,7 @@
  */
 package com.letrangerv.vtester.config;
 
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 /**
@@ -12,6 +13,7 @@ import org.springframework.context.annotation.Configuration;
  * @since 3/1/16
  */
 @Configuration
+@ComponentScan("com.letrangerv.vtester")
 public class AppConfig {
 
 }
