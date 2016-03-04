@@ -23,7 +23,6 @@ for (var i = 0; i < deleteQuestionElements.length; i++) {
 
 //TODO: highlight questions without selected true answer. maybe before submitting form.
 //TODO: refactor
-//FIXME: now options are added only to last created question
 //TODO pass parameters to POST request
 
 function registerListeners(i) {
@@ -34,8 +33,10 @@ addQuestionButton.addEventListener("click", addQuestion, false);
 
 function addQuestion() {
     var questions = document.querySelector(".questions");
-
-    getResource("/res/question.html").then(
+    var questionCounter = questions.childElementCount;
+    var resourceUrl = "/question?number=" + questionCounter;
+//    getResource("/res/question.html").then(
+    getResource(resourceUrl).then(
         function(responseText) {
             questions.insertAdjacentHTML('beforeend', responseText);
             var deleteQuestionElements = questions.querySelectorAll(".delete-question");

@@ -9,6 +9,8 @@
 <html>
 <head>
   <title></title>
+  <script type="text/javascript" src="option.js" defer></script>
+  <script type="text/javascript" src="question1.js" defer></script>
 </head>
 <body>
 
@@ -58,7 +60,8 @@
 </div>
 <%--</form>--%>
 
-<script src="question.js"></script>
-<script src="option.js"></script>
+<%--<script src="option.js"></script>--%>
+<%--<script src="question1.js"></script>--%>
+
 </body>
 </html>

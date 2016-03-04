@@ -1,9 +1,10 @@
 /**
- * @(#)AddQuizController.java 3/1/16.
+ * @(#)QuestionController.java 3/4/16.
  * Copyright (c) 2016 The Boeing Company All rights reserved.
  */
 package com.letrangerv.vtester.controller;
 
+import freemarker.template.Configuration;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,27 +12,23 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletResponse;
-import java.util.Arrays;
 
 /**
  * @author VStrokan
  * @version 1.0
- * @since 3/1/16
+ * @since 3/4/16
  */
 @Controller
-@RequestMapping(path = "/quiz")
-public class QuizController {
-    @RequestMapping(method = RequestMethod.POST)
-    public void addTypes(@RequestParam(name = "question_type", required = true) String[] questionTypes) {
-        Arrays.asList(questionTypes).forEach(System.out::println);
-//        question_text:
-//        option_text:
-//        is-right
-    }
-
+@RequestMapping("/question")
+public class QuestionController {
     @RequestMapping(method = RequestMethod.GET)
-    public String get() {
-        return "quiz";
+    public String get(@RequestParam final int number) {
+        System.out.println("number " + number);
+//        Configuration ftlCfg = new Configuration();
+                           //todo add param
+//        ftlCfg.getTemplate("WEB-INF/question.ftl");
+
+        return "question";
     }
 
     @ModelAttribute

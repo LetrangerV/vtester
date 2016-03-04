@@ -1,12 +1,12 @@
-buildscript {
-    repositories {
-        jcenter()
-    }
-
-    dependencies {
-        classpath 'com.bmuschko:gradle-tomcat-plugin:2.2.4'
-    }
-}
+//buildscript {
+//    repositories {
+//        jcenter()
+//    }
+//
+//    dependencies {
+//        classpath 'com.bmuschko:gradle-tomcat-plugin:2.2.4'
+//    }
+//}
 
 apply plugin: 'java'
 apply plugin: 'war'
@@ -19,8 +19,6 @@ repositories {
     jcenter()
 }
 
-
-
 dependencies {
     def springVersion = '4.2.5.RELEASE'
     compile 'org.slf4j:slf4j-api:1.7.13',
@@ -29,16 +27,18 @@ dependencies {
             "org.springframework:spring-beans:${springVersion}",
             "org.springframework:spring-web:${springVersion}",
             "org.springframework:spring-webmvc:${springVersion}",
+            "org.springframework:spring-context-support:${springVersion}",
             "org.springframework.security:spring-security-core:4.0.4.RELEASE",
             "org.springframework.security:spring-security-web:4.0.4.RELEASE",
             "org.springframework.security:spring-security-config:4.0.4.RELEASE",
             "javax.servlet:javax.servlet-api:3.0.1",
-            "javax.servlet.jsp.jstl:jstl:1.2"
+            "javax.servlet.jsp.jstl:jstl:1.2",
+            'org.freemarker:freemarker:2.3.20'
 
-    def tomcatVersion = '7.0.62'
-    tomcat "org.apache.tomcat.embed:tomcat-embed-core:${tomcatVersion}",
-            "org.apache.tomcat.embed:tomcat-embed-logging-juli:${tomcatVersion}",
-            "org.apache.tomcat.embed:tomcat-embed-jasper:${tomcatVersion}"
+//    def tomcatVersion = '7.0.62'
+//    tomcat "org.apache.tomcat.embed:tomcat-embed-core:${tomcatVersion}",
+//            "org.apache.tomcat.embed:tomcat-embed-logging-juli:${tomcatVersion}",
+//            "org.apache.tomcat.embed:tomcat-embed-jasper:${tomcatVersion}"
 
     testCompile 'junit:junit:4.12'
 }
