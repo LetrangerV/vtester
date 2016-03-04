@@ -6,3 +6,4 @@ gradlew.*
 gradle/
 build/
 classes/
+out/

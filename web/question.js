@@ -8,7 +8,14 @@
 
 var addQuestionButton = document.querySelector(".add-question-btn");
 var deleteQuestionElements = document.querySelectorAll(".delete-question");
-var addOptionButtons = document.querySelectorAll(".add-option");
+var submitQuizBtn = document.querySelector(".submit-quiz");
+submitQuizBtn.addEventListener("click", function() {
+    postQuizData("/quiz").then(function(responseText) {
+        console.log("successfully post");
+    },
+    displayError
+    );
+}, false);
 
 for (var i = 0; i < deleteQuestionElements.length; i++) {
     registerListeners(i);
@@ -21,7 +28,6 @@ for (var i = 0; i < deleteQuestionElements.length; i++) {
 
 function registerListeners(i) {
     deleteQuestionElements[i].addEventListener("click", deleteQuestionParent, false);
-//    addOptionButtons[i].addEventListener("click", addOption, false);
 }
 
 addQuestionButton.addEventListener("click", addQuestion, false);
@@ -58,11 +64,32 @@ function getResource(url) {
                 error.code = xhr.status;
                 reject(error);
             }
-        }
+        };
 
         xhr.onerror = function() {
             reject(new Error("Network error."));
-        }
+        };
+        xhr.send();
+    });
+}
+
+function postQuizData(url) {
+    return new Promise(function(resolve, reject) {
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', url);
+        xhr.onload = function() {
+            if (xhr.status == 200) {
+                resolve(xhr.responseText);
+            } else {
+                var error = new Error(xhr.statusText);
+                error.code = xhr.status;
+                reject(error);
+            }
+        };
+
+        xhr.onerror = function() {
+            reject(new Error("Network error."));
+        };
         xhr.send();
     });
 }

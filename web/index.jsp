@@ -18,10 +18,10 @@
   <span>Число вариантов ответа</span>
   <input type="number" value="4"/>
 </div>
-<form action="quiz" method="POST">
+<%--<form action="quiz" method="POST">--%>
 <div>
   <button class="add-question-btn" type="button">Добавить вопрос</button>    <!--todo maybe predefine number of questions or variants -->
-</div>                                  <!--TODO remove 1 default question, implement templating logic instead-->
+</div>                                  <!--TODO remove 1 default question, implement templating logic instead. Make radiobtn check required-->
 <div class="questions">
   <div class="question">
     <select name="question_type">
@@ -36,7 +36,7 @@
       <input type="text" name="question_text"/>
     </div>
     <div class="question-options">
-      <form action="">
+      <form class="option-form" action="">
       <div class="question-option">
         <span>
           <label>Вариант ответа</label>
@@ -52,11 +52,11 @@
     </div>
     <div>
       <button class="add-option" type="button">Добавить вариант ответа</button>
-      <input type="submit" value="Сохранить тест"/>
+      <button class="submit-quiz" type="button">Сохранить тест</button>
     </div>
   </div>
 </div>
-</form>
+<%--</form>--%>
 
 <script src="question.js"></script>
 <script src="option.js"></script>

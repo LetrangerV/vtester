@@ -13,18 +13,21 @@ for (var i = 0; i < deleteOptionElements.length; i++) {
 
 function registerListeners(i) {
     deleteOptionElements[i].addEventListener("click", deleteOptionParent, false);
-    addOptionButtons[i].addEventListener("click", addOption, false);
+    var btn = addOptionButtons[i];
+    btn.addEventListener("click", function(event) {
+        addOption(event);
+    }, false);
 }
 
-function addOption() {
-    var options = document.querySelectorAll(".question-options");
-    var lastOption = options[options.length - 1];
-    var form = lastOption.children[0];
+function addOption(event) {
+    var targetBtn = event.target;
+    var targetQuestion = targetBtn.parentNode.parentNode;
+    var form = targetQuestion.querySelector(".option-form");
 
     getResource("/res/option.html").then(
         function(responseText) {
             form.insertAdjacentHTML('beforeend', responseText);
-            var deleteOptionElements = lastOption.querySelectorAll(".delete-option");
+            var deleteOptionElements = targetQuestion.querySelectorAll(".delete-option");
             var deleteOptionElement = deleteOptionElements[deleteOptionElements.length - 1];
             deleteOptionElement.addEventListener("click", deleteOptionParent, false);
         },
