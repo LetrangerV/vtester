@@ -8,14 +8,6 @@
 
 var addQuestionButton = document.querySelector(".add-question-btn");
 var deleteQuestionElements = document.querySelectorAll(".delete-question");
-var submitQuizBtn = document.querySelector(".submit-quiz");
-submitQuizBtn.addEventListener("click", function() {
-    postQuizData("/quiz").then(function(responseText) {
-        console.log("successfully post");
-    },
-    displayError
-    );
-}, false);
 
 for (var i = 0; i < deleteQuestionElements.length; i++) {
     registerListeners(i);
@@ -43,11 +35,14 @@ function addQuestion() {
             deleteQuestionElements[deleteQuestionElements.length - 1].addEventListener("click", deleteQuestionParent, false);
 
             var deleteOptionElements = questions.querySelectorAll(".delete-option");
-            deleteOptionElements[deleteOptionElements.length - 1].addEventListener("click", deleteOptionParent, false);
+            if (deleteOptionElements && deleteOptionElements.length > 0) {
+                deleteOptionElements[deleteOptionElements.length - 1].addEventListener("click", deleteOptionParent, false);
+            }
 
             var addOptionButtons = questions.querySelectorAll(".add-option");
-            console.log("add option cnt " + addOptionButtons.length);
-            addOptionButtons[addOptionButtons.length - 1].addEventListener("click", addOption, false);
+            if (addOptionButtons && addOptionButtons.length > 0) {
+                addOptionButtons[addOptionButtons.length - 1].addEventListener("click", addOption, false);
+            }
         },
         displayError
     );
@@ -57,27 +52,6 @@ function getResource(url) {
     return new Promise(function(resolve, reject) {
         var xhr = new XMLHttpRequest();
         xhr.open('GET', url);
-        xhr.onload = function() {
-            if (xhr.status == 200) {
-                resolve(xhr.responseText);
-            } else {
-                var error = new Error(xhr.statusText);
-                error.code = xhr.status;
-                reject(error);
-            }
-        };
-
-        xhr.onerror = function() {
-            reject(new Error("Network error."));
-        };
-        xhr.send();
-    });
-}
-
-function postQuizData(url) {
-    return new Promise(function(resolve, reject) {
-        var xhr = new XMLHttpRequest();
-        xhr.open('POST', url);
         xhr.onload = function() {
             if (xhr.status == 200) {
                 resolve(xhr.responseText);

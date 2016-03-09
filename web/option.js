@@ -13,20 +13,17 @@ for (var i = 0; i < deleteOptionElements.length; i++) {
 
 function registerListeners(i) {
     deleteOptionElements[i].addEventListener("click", deleteOptionParent, false);
-    var btn = addOptionButtons[i];
-    btn.addEventListener("click", function(event) {
-        addOption(event);
-    }, false);
+    addOptionButtons[i].addEventListener("click", function(event) {addOption(event);}, false);
 }
 
 function addOption(event) {
     var targetBtn = event.target;
     var targetQuestion = targetBtn.parentNode.parentNode;
-    var form = targetQuestion.querySelector(".option-form");
+    var options = targetQuestion.querySelector(".question-options");
 
     getResource("/res/option.html").then(
         function(responseText) {
-            form.insertAdjacentHTML('beforeend', responseText);
+            options.insertAdjacentHTML('beforeend', responseText);
             var deleteOptionElements = targetQuestion.querySelectorAll(".delete-option");
             var deleteOptionElement = deleteOptionElements[deleteOptionElements.length - 1];
             deleteOptionElement.addEventListener("click", deleteOptionParent, false);
