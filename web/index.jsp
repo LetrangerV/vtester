@@ -10,53 +10,34 @@
 <html>
 <head>
   <title></title>
-  <script type="text/javascript" src="option.js" defer></script>
+  <link rel="stylesheet" href="css/question.css"/>
+  <link
+    rel="stylesheet"
+    href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+    integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7"
+    crossorigin="anonymous">
+  <script type="text/javascript" src="option1.js" defer></script>
   <script type="text/javascript" src="question1.js" defer></script>
 </head>
 <body>
 
 <div>
   <span>Число вопросов</span>
-  <input type="number" value="10"/>
+  <input class="init-questions" type="number" value="10" max="50" min="0"/>    <!--TODO user still can break manually-->
+  <%--function forceNumeric(){--%>
+  <%--var $input = $(this);--%>
+  <%--$input.val($input.val().replace(/[^\d]+/g,''));--%>
+  <%--}--%>
+  <%--$('body').on('propertychange input', 'input[type="number"]', forceNumeric);--%>
   <span>Число вариантов ответа</span>
-  <input type="number" value="4"/>
+  <input class="init-options" type="number" value="4" max="10" min="0"/>
+  <span class="add-question-btn green glyphicon glyphicon-plus-sign"></span>
+
 </div>
-<div>
-  <button class="add-question-btn" type="button">Добавить вопрос</button>    <!--todo maybe predefine number of questions or variants -->
-</div>                                  <!--TODO remove 1 default question, implement templating logic instead. Make radiobtn check required-->
-<form action="quiz" method="POST">
-<div class="questions">
-  <%--<div class="question">--%>
-    <%--<select name="question_type">--%>
-      <%--<option value="one_answer" selected>Выбор 1 варианта ответа</option>--%>
-      <%--<option value="multi_answer">Выбор нескольких ответов</option>--%>
-      <%--<option value="mapping">Установить соответствие</option>--%>
-      <%--<option value="user_input">Свободный ответ</option>--%>
-    <%--</select>--%>
-    <%--<span class="delete-question">Delete question</span>--%>
-    <%--<div>--%>
-      <%--<label>Текст вопроса</label>--%>
-      <%--<input type="text" name="question_text"/>--%>
-    <%--</div>--%>
-    <%--<div class="question-options">--%>
-      <%--<div class="question-option">--%>
-        <%--<span>--%>
-          <%--<label>Вариант ответа</label>--%>
-          <%--<input type="text" name="option_text"/>--%>
-        <%--</span>--%>
-        <%--<span>--%>
-          <%--<label>Правильный ответ?</label>--%>
-          <%--<input type="radio" name="is-right"/>--%>
-        <%--</span>--%>
-        <%--<span class="delete-option">Удалить</span>--%>
-      <%--</div>--%>
-    <%--</div>--%>
-    <%--<div>--%>
-      <%--<button class="add-option" type="button">Добавить вариант ответа</button>--%>
-    <%--</div>--%>
-  <%--</div>--%>
-</div>
+<form action="quiz" method="POST" onsubmit="return validateAllQuestions();">
   <input class="submit-quiz" type="submit" value="Сохранить тест"/>
+  <div class="questions">
+  </div>
 </form>
 
 </body>

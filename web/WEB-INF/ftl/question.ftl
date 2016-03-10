@@ -1,32 +1,18 @@
-<#--<div class="question${number}">-->
-<div class="question<#if number??>${number}t<#else>0</#if>">
+<div class="question">
   <select name="question_type">
     <option value="one_answer" selected>Выбор 1 варианта ответа</option>
     <option value="multi_answer">Выбор нескольких ответов</option>
     <option value="mapping">Установить соответствие</option>
     <option value="user_input">Свободный ответ</option>
   </select>
-  <span class="delete-question">Delete question</span>
+  <span class="delete-question red glyphicon glyphicon-remove-sign"></span>
   <div>
     <label>Текст вопроса</label>
-    <input type="text" name="question_text"/>
+    <input type="text" name="question_text" required placeholder="Your text"/>
+    <span class="add-option green glyphicon glyphicon-plus"></span>
   </div>
   <div class="question-options">
-    <#--<form class="option-form" action="">-->
-      <#--<div class="question-option">-->
-      <#--<span>-->
-        <#--<label>Вариант ответа</label>-->
-        <#--<input type="text" name="option_text"/>-->
-      <#--</span>-->
-      <#--<span>-->
-        <#--<label>Правильный ответ?</label>-->
-        <#--<input type="radio" name="is-right"/>-->
-      <#--</span>-->
-        <#--<span class="delete-option">Удалить</span>-->
-      <#--</div>-->
-    <#--</form>-->
   </div>
-  <div>
-    <button class="add-option" type="button">Добавить вариант ответа</button>
-  </div>
+  <#--<div>-->
+  <#--</div>-->
 </div>

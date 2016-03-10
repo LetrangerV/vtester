@@ -1,0 +1,19 @@
+.question {
+    border: solid black 2px;
+}
+
+.question-option {
+    border: dashed green 1px;
+}
+
+span.glyphicon {
+    font-size: 1.2em;
+}
+
+.green {
+    color: green;
+}
+
+.red {
+    color: red;
+}
