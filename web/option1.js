@@ -21,7 +21,8 @@ function addOption(event) {
     var targetQuestion = targetBtn.parentNode.parentNode;
     var options = targetQuestion.querySelector(".question-options");
 
-    getResource("/res/option.html").then(
+    //noinspection JSUnresolvedFunction
+    getResource("/option").then(
         function(responseText) {
             options.insertAdjacentHTML('beforeend', responseText);
             var deleteOptionElements = targetQuestion.querySelectorAll(".delete-option");

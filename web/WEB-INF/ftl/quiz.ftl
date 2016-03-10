@@ -1,7 +1,7 @@
 <html>
 <head>
   <script src="../../question1.js" defer></script>
-  <script src="../../option.js" defer></script>
+  <script src="../../option1.js" defer></script>
   <title></title>
 </head>
 <body>
