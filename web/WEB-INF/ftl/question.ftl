@@ -13,6 +13,5 @@
   </div>
   <div class="question-options">
   </div>
-  <#--<div>-->
-  <#--</div>-->
+  <input type="hidden" class="options-count" name="options-count"/>
 </div>

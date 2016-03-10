@@ -126,11 +126,14 @@ function displayError(error) {
 function validateSingleAnswer(option) {
     //todo check if question has no options
     var optionCheckboxes = option.querySelectorAll("input[type=checkbox]");
+    var hiddenCheckboxesValues = option.querySelectorAll("input.is-right");
 
     var isOk = false;
 
     for (var i = 0; i < optionCheckboxes.length; i++) {
         var checkBox = optionCheckboxes[i];
+        hiddenCheckboxesValues[i].value = checkBox.checked;
+
         if (checkBox.checked) {
             isOk = true;
         }
@@ -157,10 +160,12 @@ function validateSingleAnswer(option) {
 }
 
 function validateAllQuestions() {
-    var optsWrapper = document.querySelectorAll("div.question-options");      //one question
+    var optsWrapper = document.querySelectorAll("div.question-options");
     var isValid = true;
+    var optionsCountFields = document.querySelectorAll("input.options-count");
 
     for (var i = 0; i < optsWrapper.length; i++) {
+        optionsCountFields[i].value = optsWrapper[i].children.length;
         if (!validateSingleAnswer(optsWrapper[i])) {
             isValid = false;
         }

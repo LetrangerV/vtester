@@ -4,14 +4,11 @@
  */
 package com.letrangerv.vtester.controller;
 
+import com.letrangerv.vtester.dao.QuizDto;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-
-import javax.servlet.http.HttpServletResponse;
-import java.util.Arrays;
 
 /**
  * @author VStrokan
@@ -22,11 +19,22 @@ import java.util.Arrays;
 @RequestMapping(path = "/quiz")
 public class QuizController extends Utf8ContentController {
     @RequestMapping(method = RequestMethod.POST)
-    public void addTypes(@RequestParam(name = "question_type", required = true) String[] questionTypes) {
-        Arrays.asList(questionTypes).forEach(System.out::println);
-//        question_text:
-//        option_text:
-//        is-right
+    public void addTypes(
+        @RequestParam(name = "question_type", required = true) String[] questionTypes,
+        @RequestParam(name = "question_text", required = true) String[] questionText,
+        @RequestParam(name = "option_text", required = true) String[] optionText,
+        @RequestParam(name = "is-right-hid", required = true) boolean[] isRight,
+        @RequestParam(name = "options-count", required = true) int[] numOfOptions
+
+    ) {
+        QuizDto quizDto = new QuizDto();
+        quizDto.setQuestionTypes(questionTypes);
+        quizDto.setQuestionText(questionText);
+        quizDto.setOptionText(optionText);
+        quizDto.setRightAnswer(isRight);
+        quizDto.setNumberOfOptions(numOfOptions);
+
+        //todo save in db via service layer. maybe convert to domain object first
     }
 
     @RequestMapping(method = RequestMethod.GET)
