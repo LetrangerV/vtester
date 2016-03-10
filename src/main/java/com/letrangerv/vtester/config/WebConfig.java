@@ -41,11 +41,11 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         factory.setTemplateLoaderPath("classpath:web/WEB-INF/ftl");
         try {
             freemarker.template.Configuration configuration = factory.createConfiguration();
-//            configuration.setEncoding(new Locale("ru"), "utf-8");
-//            configuration.setDefaultEncoding();
+            configuration.setDefaultEncoding("UTF-8");
+            configuration.setOutputEncoding("UTF-8");
+            configuration.setURLEscapingCharset("UTF-8");
             FreeMarkerConfigurer fmc = new FreeMarkerConfigurer();
             fmc.setConfiguration(configuration);
-//            fmc.setTemplateLoaderPath("/WEB-INF/");
             return fmc;
         } catch (IOException e) {
             e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
@@ -53,33 +53,14 @@ public class WebConfig extends WebMvcConfigurerAdapter {
             e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
         }
 
-//        freemarker.template.Configuration cfg = new freemarker.template.Configuration();
-//        cfg.setTemplateLoader(new MultiTemplateLoader(
-//            new TemplateLoader[]{
-//                new ClassTemplateLoader(FreeMarkerConfig.class, "/WEB-INF/")
-//            }
-//        ));
-
           return null;
     }
-
-//    @Bean
-//    public InternalResourceViewResolver viewResolver() {
-//        InternalResourceViewResolver resolver = new InternalResourceViewResolver();
-//        resolver.setPrefix("/WEB-INF/");
-//        resolver.setSuffix(".ftl");
-//        return resolver;
-//    }
 
     @Bean
     public FreeMarkerViewResolver freeMarkerViewResolver() {
         FreeMarkerViewResolver resolver = new FreeMarkerViewResolver();
-//        resolver.setPrefix();
-//        resolver.setPrefix("/WEB-INF/");
-//        resolver.setPrefix("");
         resolver.setSuffix(".ftl");
-//        resolver.setContentType("text/html;charset=UTF-8");
-//        resolver
+        resolver.setContentType("text/html;charset=UTF-8");
 
         return resolver;
     }

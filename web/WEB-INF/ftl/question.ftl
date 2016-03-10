@@ -1,4 +1,3 @@
-<#ftl encoding="UTF-8">
 <#--<div class="question${number}">-->
 <div class="question<#if number??>${number}t<#else>0</#if>">
   <select name="question_type">
