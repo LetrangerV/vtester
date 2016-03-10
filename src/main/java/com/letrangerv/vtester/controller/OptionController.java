@@ -1,5 +1,5 @@
 /**
- * @(#)QuestionController.java 3/4/16.
+ * @(#)OptionController.java 3/10/16.
  * Copyright (c) 2016 The Boeing Company All rights reserved.
  */
 package com.letrangerv.vtester.controller;
@@ -11,13 +11,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 /**
  * @author VStrokan
  * @version 1.0
- * @since 3/4/16
+ * @since 3/10/16
  */
 @Controller
-@RequestMapping("/question")
-public class QuestionController extends Utf8ContentController {
+@RequestMapping("/option")
+public class OptionController extends Utf8ContentController {
     @RequestMapping(method = RequestMethod.GET)
     public String get() {
-        return "question";
+        return "option";
     }
 }

@@ -20,7 +20,7 @@ import java.util.Arrays;
  */
 @Controller
 @RequestMapping(path = "/quiz")
-public class QuizController {
+public class QuizController extends Utf8ContentController {
     @RequestMapping(method = RequestMethod.POST)
     public void addTypes(@RequestParam(name = "question_type", required = true) String[] questionTypes) {
         Arrays.asList(questionTypes).forEach(System.out::println);
@@ -31,11 +31,6 @@ public class QuizController {
 
     @RequestMapping(method = RequestMethod.GET)
     public String get() {
-        return "quiz";
-    }
-
-    @ModelAttribute
-    public void setVaryResponseHeader(HttpServletResponse response) {
-        response.setHeader("Content-Type", "text/html;charset=UTF-8");
+        return "quiz"; //todo redirect
     }
 }
