@@ -8,14 +8,55 @@
 
 var addQuestionButton = document.querySelector(".add-question-btn");
 var deleteQuestionElements = document.querySelectorAll(".delete-question");
+var initialQuestionCounter = document.querySelector("input.init-questions");
+var initialOptionCounter = document.querySelector("input.init-options");
+var cachedQuestion;          //todo cache all 4 types of questions. decide how. maybe EhCache, then don't cache on js side
 
 for (var i = 0; i < deleteQuestionElements.length; i++) {
     registerListeners(i);
 }
 
+['input', 'onkeyup'].forEach(function(e){
+    initialQuestionCounter.addEventListener(e, initQuestionsHandler, false);
+    initialOptionCounter.addEventListener(e, initOptionsHandler, false);
+});
+
+function initQuestionsHandler(e) {
+    var resourceUrl = "/question";
+    var questionCnt = e.target.value;
+
+    if (!cachedQuestion) {
+        //noinspection JSUnresolvedFunction
+        getResource(resourceUrl).then(
+            function(responseText) {
+                cachedQuestion = responseText;
+                redraw(cachedQuestion, questionCnt);
+            },
+            displayError
+        );
+    }
+
+    redraw(cachedQuestion, questionCnt);
+}
+
+function initOptionsHandler(e) {
+    //todo
+}
+
+function redraw(question, totalNumber) {
+    var questions = document.querySelector(".questions");
+    while(questions.lastChild) {
+        questions.removeChild(questions.lastChild);
+    }
+
+    for (var i = 0; i < totalNumber; i++) {
+        insertNewQuestion(questions, question);
+    }
+}
+
+
 //TODO: highlight questions without selected true answer. maybe before submitting form.
 //TODO: refactor
-//TODO pass parameters to POST request
 
 function registerListeners(i) {
     deleteQuestionElements[i].addEventListener("click", deleteQuestionParent, false);
@@ -25,30 +66,34 @@ addQuestionButton.addEventListener("click", addQuestion, false);
 
 function addQuestion() {
     var questions = document.querySelector(".questions");
-    var questionCounter = questions.childElementCount;
-    var resourceUrl = "/question?number=" + questionCounter;
-//    getResource("/res/question.html").then(
+    var resourceUrl = "/question";
+    //noinspection JSUnresolvedFunction
     getResource(resourceUrl).then(
         function(responseText) {
-            questions.insertAdjacentHTML('beforeend', responseText);
-            var deleteQuestionElements = questions.querySelectorAll(".delete-question");
-            deleteQuestionElements[deleteQuestionElements.length - 1].addEventListener("click", deleteQuestionParent, false);
-
-            var deleteOptionElements = questions.querySelectorAll(".delete-option");
-            if (deleteOptionElements && deleteOptionElements.length > 0) {
-                deleteOptionElements[deleteOptionElements.length - 1].addEventListener("click", deleteOptionParent, false);
-            }
-
-            var addOptionButtons = questions.querySelectorAll(".add-option");
-            if (addOptionButtons && addOptionButtons.length > 0) {
-                addOptionButtons[addOptionButtons.length - 1].addEventListener("click", addOption, false);
-            }
+            insertNewQuestion(questions, responseText);
         },
         displayError
     );
 }
 
+function insertNewQuestion(questions, question) {
+        questions.insertAdjacentHTML('beforeend', question);
+        var deleteQuestionElements = questions.querySelectorAll(".delete-question");
+        deleteQuestionElements[deleteQuestionElements.length - 1].addEventListener("click", deleteQuestionParent, false);
+
+        var deleteOptionElements = questions.querySelectorAll(".delete-option");
+        if (deleteOptionElements && deleteOptionElements.length > 0) {
+            deleteOptionElements[deleteOptionElements.length - 1].addEventListener("click", deleteOptionParent, false);
+        }
+
+        var addOptionButtons = questions.querySelectorAll(".add-option");
+        if (addOptionButtons && addOptionButtons.length > 0) {
+            addOptionButtons[addOptionButtons.length - 1].addEventListener("click", addOption, false);
+        }
+}
+
 function getResource(url) {
+    //noinspection JSUnresolvedFunction
     return new Promise(function(resolve, reject) {
         var xhr = new XMLHttpRequest();
         xhr.open('GET', url);
@@ -76,4 +121,50 @@ function deleteQuestionParent() {
 
 function displayError(error) {
     alert(error.code + ' ' + error);
+}
+
+function validateSingleAnswer(option) {
+    //todo check if question has no options
+    var optionCheckboxes = option.querySelectorAll("input[type=checkbox]");
+
+    var isOk = false;
+
+    for (var i = 0; i < optionCheckboxes.length; i++) {
+        var checkBox = optionCheckboxes[i];
+        if (checkBox.checked) {
+            isOk = true;
+        }
+    }
+
+    if (!isOk) {
+        if (option.classList.contains("alert-success")) {
+            option.classList.remove("alert-success");
+            option.classList.remove("alert");
+        }
+        option.classList.add("alert-danger");
+        option.classList.add("alert");
+        isOk = false;
+    } else {
+        if (option.classList.contains("alert-danger")) {
+            option.classList.remove("alert-danger");
+            option.classList.remove("alert");
+        }
+        option.classList.add("alert-success");
+        option.classList.add("alert");
+    }
+
+    return isOk;
+}
+
+function validateAllQuestions() {
+    var optsWrapper = document.querySelectorAll("div.question-options");      //one question
+    var isValid = true;
+
+    for (var i = 0; i < optsWrapper.length; i++) {
+        if (!validateSingleAnswer(optsWrapper[i])) {
+            isValid = false;
+        }
+    }
+
+    return isValid;
 }
