@@ -11,7 +11,7 @@ package com.letrangerv.vtester.domain;
  */
 public class QuestionFactory {
     private static final String ONE_ANSWER = "one_answer";
-    private static final String MULTIPLE_ANSWERS = "multi_answer";
+    private static final String MULTI_ANSWERS = "multi_answer";
     private static final String MAPPING = "mapping";
     private static final String USER_INPUT = "user_input";
 
@@ -20,9 +20,9 @@ public class QuestionFactory {
     public static Question createQuestion(final String typeOfQuestion) throws NoSuchQuestionTypeException {
         switch (typeOfQuestion) {
             case ONE_ANSWER: {
-                return new SelectOneAnswerQuestion();
+                return new OneAnswerQuestion();
             }
-            case MULTIPLE_ANSWERS: {
+            case MULTI_ANSWERS: {
                 return null;  //TODO CREATE CLASSES
             }
             case MAPPING: {

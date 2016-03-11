@@ -1,5 +1,5 @@
 /**
- * @(#)SelectOneAnswerQuestion.java 2/29/16.
+ * @(#)OneAnswerQuestion.java 2/29/16.
  * Copyright (c) 2016 The Boeing Company All rights reserved.
  */
 package com.letrangerv.vtester.domain;
@@ -11,7 +11,7 @@ import java.util.Set;
  * @version 1.0
  * @since 2/29/16
  */
-public class SelectOneAnswerQuestion implements Question {
+public class OneAnswerQuestion implements Question {
     private String questionText;
     private Set<AnswerOption> m_optionSet;
 
@@ -25,6 +25,10 @@ public class SelectOneAnswerQuestion implements Question {
 
     public void setOptionSet(Set<AnswerOption> optionSet) {
         m_optionSet = optionSet;
+    }
+
+    public Set<AnswerOption> getOptionSet() {
+        return m_optionSet;
     }
 
     @Override
