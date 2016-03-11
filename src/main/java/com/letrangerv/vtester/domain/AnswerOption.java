@@ -12,4 +12,20 @@ package com.letrangerv.vtester.domain;
 public class AnswerOption {
     private String optionText;
     private boolean isRightAnswer;
+
+    public String getOptionText() {
+        return optionText;
+    }
+
+    public void setOptionText(String optionText) {
+        this.optionText = optionText;
+    }
+
+    public boolean isRightAnswer() {
+        return isRightAnswer;
+    }
+
+    public void setRightAnswer(boolean rightAnswer) {
+        isRightAnswer = rightAnswer;
+    }
 }
