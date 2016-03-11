@@ -13,8 +13,29 @@ import java.util.List;
  */
 public class QuizImpl implements Quiz {
     private List<Question> m_questions;
+    private String title;
     private int m_maxScore;
     private int m_totalScore;
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public List<Question> getQuestions() {
+        return m_questions;
+    }
+
+    public void setQuestions(List<Question> questions) {
+        m_questions = questions;
+    }
+
+    public QuizImpl(List<Question> questions) {
+        m_questions = questions;
+    }
 
     public void addQuestion(Question q) {
         m_questions.add(q);
