@@ -15,6 +15,7 @@ sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 repositories {
+    mavenLocal()
     mavenCentral()
     jcenter()
 }
@@ -28,11 +29,12 @@ dependencies {
             "org.springframework:spring-web:${springVersion}",
             "org.springframework:spring-webmvc:${springVersion}",
             "org.springframework:spring-context-support:${springVersion}",
+            "org.springframework:spring-jdbc:${springVersion}",
             "org.springframework.security:spring-security-core:4.0.4.RELEASE",
             "org.springframework.security:spring-security-web:4.0.4.RELEASE",
             "org.springframework.security:spring-security-config:4.0.4.RELEASE",
             "javax.servlet:javax.servlet-api:3.0.1",
-            "javax.servlet.jsp.jstl:jstl:1.2",
+//            "javax.servlet.jsp.jstl:jstl:1.2",
             'org.freemarker:freemarker:2.3.20'
 
 //    def tomcatVersion = '7.0.62'
@@ -40,5 +42,6 @@ dependencies {
 //            "org.apache.tomcat.embed:tomcat-embed-logging-juli:${tomcatVersion}",
 //            "org.apache.tomcat.embed:tomcat-embed-jasper:${tomcatVersion}"
 
-    testCompile 'junit:junit:4.12'
+    testCompile 'junit:junit:4.12',
+                "org.springframework:spring-test:${springVersion}"
 }
