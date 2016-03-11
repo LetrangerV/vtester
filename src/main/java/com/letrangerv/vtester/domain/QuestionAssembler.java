@@ -11,7 +11,7 @@ package com.letrangerv.vtester.domain;
  */
 public class QuestionAssembler {
 //    public Question assemble(Request req) {
-//        Question q = new SelectOneAnswerQuestion();
+//        Question q = new OneAnswerQuestion();
 //        req.getParameter("question_type");
 //    }
 }
