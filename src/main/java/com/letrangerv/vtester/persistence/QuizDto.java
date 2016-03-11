@@ -2,7 +2,7 @@
  * @(#)QuizDto.java 3/10/16.
  * Copyright (c) 2016 The Boeing Company All rights reserved.
  */
-package com.letrangerv.vtester.dao;
+package com.letrangerv.vtester.persistence;
 
 /**
  * @author VStrokan
