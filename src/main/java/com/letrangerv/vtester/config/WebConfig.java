@@ -14,7 +14,6 @@ import org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer;
 import org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver;
 
 import java.io.IOException;
-import java.util.Locale;
 
 /**
  * @author VStrokan
@@ -23,7 +22,11 @@ import java.util.Locale;
  */
 @Configuration
 @EnableWebMvc
-@ComponentScan("com.letrangerv.vtester.controller")
+@ComponentScan(basePackages = {
+    "com.letrangerv.vtester.controller",
+    "com.letrangerv.vtester.persistence",
+    "com.letrangerv.vtester.service"
+})
 public class WebConfig extends WebMvcConfigurerAdapter {
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
