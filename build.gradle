@@ -34,6 +34,7 @@ dependencies {
             "org.springframework.security:spring-security-web:4.0.4.RELEASE",
             "org.springframework.security:spring-security-config:4.0.4.RELEASE",
             "javax.servlet:javax.servlet-api:3.0.1",
+            'mysql:mysql-connector-java:5.1.38',
 //            "javax.servlet.jsp.jstl:jstl:1.2",
             'org.freemarker:freemarker:2.3.20'
 
