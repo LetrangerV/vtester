@@ -21,7 +21,10 @@
 </head>
 <body>
 
+<form action="quiz" method="POST" onsubmit="return validateAllQuestions();">
 <div>
+  <span>Название теста</span>
+  <input type="text" name="title" placeholder="Тест" required/>
   <span>Число вопросов</span>
   <input class="init-questions" type="number" value="10" max="50" min="0"/>    <!--TODO user still can break manually-->
   <%--function forceNumeric(){--%>
@@ -34,7 +37,6 @@
   <span class="add-question-btn green glyphicon glyphicon-plus-sign"></span>
 
 </div>
-<form action="quiz" method="POST" onsubmit="return validateAllQuestions();">
   <input class="submit-quiz" type="submit" value="Сохранить тест"/>
   <div class="questions">
   </div>

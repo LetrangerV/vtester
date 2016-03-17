@@ -7,6 +7,8 @@
 <body>
 
 <div>
+  <span>Название теста</span>
+  <input type="text" name="title" placeholder="Тест" required/>
   <span>Число вопросов</span>
   <input type="number" value="10"/>
   <span>Число вариантов ответа</span>

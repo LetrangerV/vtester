@@ -30,6 +30,7 @@ public class QuizController extends Utf8ContentController {
 
     @RequestMapping(method = RequestMethod.POST)
     public void addTypes(
+        @RequestParam(name = "title", required = true) String title,
         @RequestParam(name = "question_type", required = true) String[] questionTypes,
         @RequestParam(name = "question_text", required = true) String[] questionText,
         @RequestParam(name = "option_text", required = true) String[] optionText,
@@ -38,6 +39,7 @@ public class QuizController extends Utf8ContentController {
     ) {
 
         QuizDto quizDto = new QuizDto();
+        quizDto.setTitle(title);
         quizDto.setQuestionTypes(questionTypes);
         quizDto.setQuestionText(questionText);
         quizDto.setOptionText(optionText);

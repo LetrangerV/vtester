@@ -39,8 +39,9 @@ public class QuizAssemblerImpl implements QuizAssembler {
             }
             questions.add(question);
         }
-
-        return new QuizImpl(questions);  //To change body of implemented methods use File | Settings | File Templates.
+        QuizImpl quiz = new QuizImpl(questions);
+        quiz.setTitle(quizDto.getTitle());
+        return quiz;
     }
 
     @Override
