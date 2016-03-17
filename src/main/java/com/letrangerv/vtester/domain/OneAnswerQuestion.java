@@ -4,16 +4,16 @@
  */
 package com.letrangerv.vtester.domain;
 
-import java.util.Set;
+import java.util.List;
 
 /**
  * @author VStrokan
  * @version 1.0
  * @since 2/29/16
  */
-public class OneAnswerQuestion implements Question {
+public class OneAnswerQuestion extends Entity implements Question {
     private String questionText;
-    private Set<AnswerOption> m_optionSet;
+    private List<AnswerOption> m_options;
 
     public String getQuestionText() {
         return questionText;
@@ -23,12 +23,12 @@ public class OneAnswerQuestion implements Question {
         this.questionText = questionText;
     }
 
-    public void setOptionSet(Set<AnswerOption> optionSet) {
-        m_optionSet = optionSet;
+    public void setOptions(List<AnswerOption> options) {
+        m_options = options;
     }
 
-    public Set<AnswerOption> getOptionSet() {
-        return m_optionSet;
+    public List<AnswerOption> getOptions() {
+        return m_options;
     }
 
     @Override

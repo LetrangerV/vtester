@@ -38,7 +38,7 @@ public class QuizImpl implements Quiz {
     }
 
     public void addQuestion(Question q) {
-        m_questions.add(q);
+        m_questions.add(q);       //todo remove because it is dao responsibility
     }
 
     public void removeQuestion(Question q) {

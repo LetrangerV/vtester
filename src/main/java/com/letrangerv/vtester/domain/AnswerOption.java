@@ -9,7 +9,7 @@ package com.letrangerv.vtester.domain;
  * @version 1.0
  * @since 3/1/16
  */
-public class AnswerOption {
+public class AnswerOption extends Entity {
     private String optionText;
     private boolean isRightAnswer;
 
