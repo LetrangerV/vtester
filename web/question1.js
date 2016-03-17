@@ -11,6 +11,18 @@ var deleteQuestionElements = document.querySelectorAll(".delete-question");
 var initialQuestionCounter = document.querySelector("input.init-questions");
 var initialOptionCounter = document.querySelector("input.init-options");
 var cachedQuestion;          //todo cache all 4 types of questions. decide how. maybe EhCache, then don't cache on js side
+var quiz = [];
+
+var questionJson = {
+    "question_type" : "",
+    "question_text" : "",
+    "options" : []
+};
+
+var optionJson = {
+    "option_text" : "",
+    "is_right" : false
+}; //todo add and remove questions and options on events
 
 for (var i = 0; i < deleteQuestionElements.length; i++) {
     registerListeners(i);
@@ -22,20 +34,7 @@ for (var i = 0; i < deleteQuestionElements.length; i++) {
 });
 
 function initQuestionsHandler(e) {
-    var resourceUrl = "/question";
     var questionCnt = e.target.value;
-
-    if (!cachedQuestion) {
-        //noinspection JSUnresolvedFunction
-        getResource(resourceUrl).then(
-            function(responseText) {
-                cachedQuestion = responseText;
-                redraw(cachedQuestion, questionCnt);
-            },
-            displayError
-        );
-    }
-
     redraw(cachedQuestion, questionCnt);
 }
 
@@ -53,10 +52,6 @@ function redraw(question, totalNumber) {
         insertNewQuestion(questions, question);
     }
 }
-
-
-//TODO: highlight questions without selected true answer. maybe before submitting form.
-//TODO: refactor
 
 function registerListeners(i) {
     deleteQuestionElements[i].addEventListener("click", deleteQuestionParent, false);
