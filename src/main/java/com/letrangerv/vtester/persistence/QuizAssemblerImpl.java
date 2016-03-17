@@ -8,7 +8,6 @@ import com.letrangerv.vtester.domain.*;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 
 /**
@@ -28,14 +27,14 @@ public class QuizAssemblerImpl implements QuizAssembler {
             //todo create different types of questions
             OneAnswerQuestion question = new OneAnswerQuestion();
             question.setQuestionText(quizDto.getQuestionText()[i]);
-            question.setOptionSet(new HashSet<>());
+            question.setOptions(new ArrayList<>());
 
             for (int j = 0; j < numOfOptions[i]; j++) {
                 AnswerOption option = new AnswerOption();
                 option.setOptionText(quizDto.getOptionText()[optionsCounter]);
                 option.setRightAnswer(quizDto.getRightAnswer()[optionsCounter]);
 
-                question.getOptionSet().add(option);
+                question.getOptions().add(option);
                 optionsCounter++;
             }
             questions.add(question);

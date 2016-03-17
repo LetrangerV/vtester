@@ -7,6 +7,8 @@ package com.letrangerv.vtester.controller;
 import com.letrangerv.vtester.persistence.QuizAssembler;
 import com.letrangerv.vtester.persistence.QuizDto;
 import com.letrangerv.vtester.domain.QuizImpl;
+import com.letrangerv.vtester.service.QuizService;
+import com.letrangerv.vtester.service.QuizServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,6 +25,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class QuizController extends Utf8ContentController {
     @Autowired
     private QuizAssembler m_quizAssembler;
+    @Autowired
+    private QuizService m_quizService;
 
     @RequestMapping(method = RequestMethod.POST)
     public void addTypes(
@@ -33,11 +37,6 @@ public class QuizController extends Utf8ContentController {
         @RequestParam(name = "options-count", required = true) int[] numOfOptions
     ) {
 
-//        @RequestMapping(...)   INSTEAD OF
-//        public MyDomainObjectDTO doSomething(@RequestBody MyDTO myDTO) {
-//            mapper.map(myService.foo(myDTO), MyDomainObjectDTO.class);
-//        }
-
         QuizDto quizDto = new QuizDto();
         quizDto.setQuestionTypes(questionTypes);
         quizDto.setQuestionText(questionText);
@@ -46,13 +45,7 @@ public class QuizController extends Utf8ContentController {
         quizDto.setNumberOfOptions(numOfOptions);
 
         QuizImpl quiz = m_quizAssembler.toQuiz(quizDto);
-
-        //todo save in db via service layer. maybe convert to domain object first
-//        in service class:
-//        public MyDomainObject foo(MyDTO myDTO) {
-//            // persist myDTO
-//            // and return created domain object
-//        }
+        m_quizService.insertQuiz(quiz);
     }
 
     @RequestMapping(method = RequestMethod.GET)

@@ -1,0 +1,21 @@
+{
+    "quiz" : [
+        {
+            "question_text" : "txt",
+            "question_type" : "type1",
+            "options" : [
+                {
+                    "option_text" : "op_txt1",
+                    "is_right" : "true"
+                },
+                {
+                    "option_text" : "op_txt2",
+                    "is_right" : "false"
+                }
+            ]
+        },
+        {
+
+        }
+    ]
+}

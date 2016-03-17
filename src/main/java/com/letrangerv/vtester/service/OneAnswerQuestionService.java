@@ -21,8 +21,8 @@ public class OneAnswerQuestionService {
     @Autowired
     private OneAnswerQuestionDao m_questionDao;
 
-    public List<OneAnswerQuestion> findAll() {
-        return m_questionDao.findAll();
-    }
+//    public List<OneAnswerQuestion> findAll() {
+//        return m_questionDao.findAll();
+//    }
 
 }

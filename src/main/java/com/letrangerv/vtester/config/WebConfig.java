@@ -25,7 +25,9 @@ import java.io.IOException;
 @ComponentScan(basePackages = {
     "com.letrangerv.vtester.controller",
     "com.letrangerv.vtester.persistence",
-    "com.letrangerv.vtester.service"
+    "com.letrangerv.vtester.service",
+    "com.letrangerv.vtester.domain",
+    "com.letrangerv.vtester.config",
 })
 public class WebConfig extends WebMvcConfigurerAdapter {
     @Override
