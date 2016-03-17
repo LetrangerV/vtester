@@ -1,1 +1,0 @@
-select option_id, text, is_right, question_id from options

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+  <entry key="option.insert">
+    insert
+    into options (
+      text,
+      is_right,
+      question_id)
+    values (
+      ?,
+      ?,
+      ?)
+  </entry>
+  <entry key="option.select.all">
+    select
+      option_id,
+      text,
+      is_right,
+      question_id
+    from options
+  </entry>
+</properties>
