@@ -9,6 +9,14 @@ package com.letrangerv.vtester.domain;
  * @version 1.0
  * @since 2/29/16
  */
-public interface Mark {
-    int convertToMark(double correctAnswersFraction);
+public class Mark {
+    private int mark;
+
+    public int getMark() {
+        return mark;
+    }
+
+    public void setMark(int mark) {
+        this.mark = mark;
+    }
 }
