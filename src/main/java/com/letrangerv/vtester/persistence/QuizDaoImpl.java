@@ -26,6 +26,7 @@ import java.util.Properties;
 @Component
 public class QuizDaoImpl implements QuizDao {
     public static final String INSERT_QUIZ_SQL = "quiz.insert";
+    public static final String SELECT_ASSIGNED_QUIZZES = "assignedQuiz.select";
 
     private JdbcTemplate m_jdbcTemplate;
 
@@ -47,5 +48,14 @@ public class QuizDaoImpl implements QuizDao {
             return ps;
         }, keyHolder);
         return keyHolder.getKey().intValue();
+    }
+
+    @Override
+    public List<QuizImpl> findAssignedQuizzes(String userName) {
+        return m_jdbcTemplate.query(
+            queries.getProperty(SELECT_ASSIGNED_QUIZZES),
+            (resultSet, i) -> new QuizImpl(resultSet.getString("title")),
+            userName
+        );
     }
 }

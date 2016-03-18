@@ -33,6 +33,10 @@ public class QuizImpl implements Quiz {
         m_questions = questions;
     }
 
+    public QuizImpl(String title) {
+        this.title = title;
+    }
+
     public QuizImpl(List<Question> questions) {
         m_questions = questions;
     }

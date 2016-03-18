@@ -1,5 +1,5 @@
 /**
- * @(#)QuizAssignment.java 3/17/16.
+ * @(#)AssignedQuiz.java 3/17/16.
  * Copyright (c) 2016 The Boeing Company All rights reserved.
  */
 package com.letrangerv.vtester.domain;
@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
  * @version 1.0
  * @since 3/17/16
  */
-public class QuizAssignment {
+public class AssignedQuiz {
     private QuizImpl m_quiz;
     private LocalDateTime m_deadline;
 

@@ -22,7 +22,7 @@ public class SqlPropertyBeanRegistry {
     @Bean
     public Properties quiz() {
         PropertiesFactoryBean propertiesFactoryBean = new PropertiesFactoryBean();
-        propertiesFactoryBean.setLocation(new ClassPathResource("src/main/resources/sql/option/quiz.xml"));
+        propertiesFactoryBean.setLocation(new ClassPathResource("src/main/resources/sql/queries/quiz.xml"));
         Properties properties = null;
         try {
             propertiesFactoryBean.afterPropertiesSet();
@@ -36,7 +36,7 @@ public class SqlPropertyBeanRegistry {
     @Bean
     public Properties question() {
         PropertiesFactoryBean propertiesFactoryBean = new PropertiesFactoryBean();
-        propertiesFactoryBean.setLocation(new ClassPathResource("src/main/resources/sql/option/question.xml"));
+        propertiesFactoryBean.setLocation(new ClassPathResource("src/main/resources/sql/queries/question.xml"));
         Properties properties = null;
         try {
             propertiesFactoryBean.afterPropertiesSet();
@@ -49,8 +49,8 @@ public class SqlPropertyBeanRegistry {
 
     @Bean
     public Properties option() {
-        PropertiesFactoryBean propertiesFactoryBean = new PropertiesFactoryBean();          //generify this based on method name, do a for cycle
-        propertiesFactoryBean.setLocation(new ClassPathResource("src/main/resources/sql/option/option.xml"));
+        PropertiesFactoryBean propertiesFactoryBean = new PropertiesFactoryBean();
+        propertiesFactoryBean.setLocation(new ClassPathResource("src/main/resources/sql/queries/option.xml"));
         Properties properties = null;
         try {
             propertiesFactoryBean.afterPropertiesSet();

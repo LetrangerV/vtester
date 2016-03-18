@@ -46,4 +46,9 @@ public class QuizServiceImpl implements QuizService {
 
         });
     }
+
+    @Override
+    public List<QuizImpl> findAssignedQuizzes(String userName){
+        return m_quizDao.findAssignedQuizzes(userName);
+    }
 }

@@ -6,6 +6,8 @@ package com.letrangerv.vtester.service;
 
 import com.letrangerv.vtester.domain.QuizImpl;
 
+import java.util.List;
+
 /**
  * @author VStrokan
  * @version 1.0
@@ -13,4 +15,5 @@ import com.letrangerv.vtester.domain.QuizImpl;
  */
 public interface QuizService {
     void insertQuiz(QuizImpl quiz);
+    List<QuizImpl> findAssignedQuizzes(String userName);
 }

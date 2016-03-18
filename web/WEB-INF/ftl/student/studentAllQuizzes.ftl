@@ -1,30 +1,34 @@
 <html>
 <head></head>
 <body>
-    <table class="table table-responsive student-quizzes-assigned">
+    <div class="table-bordered table-responsive">
+    <table class="table student-quizzes-assigned">
       <th>
         <td>Тест</td>
-        <td>Крайний срок выполнения</td>
+        <#--<td>Крайний срок выполнения</td>-->
       </th>
     <#list assignedQuizzes as aQuiz>
         <tr>
           <td>${aQuiz.title}</td>
-          <td>${aQuiz.deadline}</td>
+          <#--<td>${aQuiz.deadline}</td>-->
         </tr>
     </#list>
     </table>
+    </div>
 
-    <table class="table table-responsive student-quizzes-past">
+    <div class="table-bordered table-responsive">
+    <table class="table student-quizzes-past">
       <th>
         <td>Тест</td>
         <td>Оценка</td>
       </th>
-    <#list passedQuizzes as pQuiz>
-      <tr>
-        <td>${pQuiz.title}</td>
-        <td>${pQuiz.mark}</td>
-      </tr>
-    </#list>
+    <#--<#list passedQuizzes as pQuiz>-->
+      <#--<tr>-->
+        <#--<td>${pQuiz.title}</td>-->
+        <#--<td>${pQuiz.mark}</td>-->
+      <#--</tr>-->
+    <#--</#list>-->
     </table>
+    </div>
 </body>
 </html>
