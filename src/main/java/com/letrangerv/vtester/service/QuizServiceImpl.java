@@ -5,6 +5,7 @@
 package com.letrangerv.vtester.service;
 
 import com.letrangerv.vtester.domain.OneAnswerQuestion;
+import com.letrangerv.vtester.domain.PassedQuiz;
 import com.letrangerv.vtester.domain.Question;
 import com.letrangerv.vtester.domain.QuizImpl;
 import com.letrangerv.vtester.persistence.OneAnswerQuestionDao;
@@ -51,4 +52,11 @@ public class QuizServiceImpl implements QuizService {
     public List<QuizImpl> findAssignedQuizzes(String userName){
         return m_quizDao.findAssignedQuizzes(userName);
     }
+
+    @Override
+    public List<PassedQuiz> findPassedQuizzes(String userName) {
+        return m_quizDao.findPassedQuizzes(userName);
+    }
+
+    //todo delete assigned quiz and add to passed quiz in one transaction
 }

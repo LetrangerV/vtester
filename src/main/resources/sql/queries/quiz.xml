@@ -3,14 +3,26 @@
 <properties>
   <entry key="assignedQuiz.select">
     select
-    title
+      title
     from assigned_quizzes aq
     join quizzes q
-    on aq.quiz_id = q.quiz_id
+      on aq.quiz_id = q.quiz_id
     join students s
-    on s.class_id = aq.class_id
+      on s.student_id = aq.student_id
     where
-    s.email = ?
+      s.email = ?
+  </entry>
+  <entry key="passedQuiz.select">
+    select
+      title,
+      mark
+    from passed_quizzes pq
+    join quizzes q
+      on pq.quiz_id = q.quiz_id
+    join students s
+      on s.student_id = pq.student_id
+    where
+      s.email = ?
   </entry>
   <entry key="quiz.insert">
     insert

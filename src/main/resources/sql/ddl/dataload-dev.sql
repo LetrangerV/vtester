@@ -15,4 +15,6 @@ insert into students (first_name, last_name, email, class_id) values ('Вася'
 insert into students (first_name, last_name, email, class_id) values ('Петя', 'Петров', 'petrov@22', 2);
 insert into students (first_name, last_name, email, class_id) values ('Иван', 'Иванов', 'iv@i', 1);
 
-insert into assigned_quizzes (quiz_id, class_id) values (2, 1);
+insert into assigned_quizzes (quiz_id, student_id) values (2, 1);
+
+insert into passed_quizzes (mark, quiz_id, student_id) values (4, 3, 1);

@@ -1,18 +1,4 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
-  <entry key="passedQuiz.select">
-    select
-      title,
-      mark
-    from passed_quizzes pq
-    join quizzes q
-      on pq.quiz_id = q.quiz_id
-    join students s
-      on s.class_id = pq.class_id
-    join marks m
-      on m.passed_quiz_id = pq.passed_quiz_id
-    where
-      s.email = ?
-  </entry>
 </properties>

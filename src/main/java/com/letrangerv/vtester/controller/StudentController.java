@@ -4,6 +4,7 @@
  */
 package com.letrangerv.vtester.controller;
 
+import com.letrangerv.vtester.domain.PassedQuiz;
 import com.letrangerv.vtester.domain.QuizImpl;
 import com.letrangerv.vtester.service.QuizService;
 import com.letrangerv.vtester.service.StudentService;
@@ -31,8 +32,12 @@ public class StudentController extends Utf8ContentController {
 
     @RequestMapping(method = RequestMethod.GET)
     public String showMainPage(Model model, Principal principal) {
-        List<QuizImpl> assignedQuizzes = m_quizService.findAssignedQuizzes(principal.getName());
+//        List<QuizImpl> assignedQuizzes = m_quizService.findAssignedQuizzes(principal.getName());
+//        List<PassedQuiz> passedQuizzes = m_quizService.findPassedQuizzes(principal.getName());
+        List<QuizImpl> assignedQuizzes = m_quizService.findAssignedQuizzes("pupkin@22");
+        List<PassedQuiz> passedQuizzes = m_quizService.findPassedQuizzes("pupkin@22");
         model.addAttribute("assignedQuizzes", assignedQuizzes);
+        model.addAttribute("passedQuizzes", passedQuizzes);
         return "student/studentAllQuizzes";
     }
 }

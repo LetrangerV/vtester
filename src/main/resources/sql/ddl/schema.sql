@@ -43,23 +43,16 @@ create table students(
 create table assigned_quizzes(
   assigned_quiz_id int primary key auto_increment,
   quiz_id int,
-  class_id int,
+  student_id int,
   constraint 'fk__assigned_quizzes__quizzes' foreign key (quiz_id) references quizzes(quiz_id) on update cascade on delete cascade,
-  constraint 'fk__assigned_quizzes__classes' foreign key (class_id) references classes(class_id) on update cascade on delete cascade
+  constraint 'fk__assigned_quizzes__students' foreign key (student_id) references students(student_id) on update cascade on delete cascade
 );
 
 create table passed_quizzes(
   passed_quiz_id int primary key auto_increment,
-  quiz_id int,
-  class_id int,
-  constraint 'fk__passed_quizzes__quizzes' foreign key (quiz_id) references quizzes(quiz_id) on update cascade on delete cascade,
-  constraint 'fk__passed_quizzes__classes' foreign key (class_id) references classes(class_id) on update cascade on delete cascade
-);
-
-create table marks(
-  mark_id int primary key auto_increment,
   mark int,
+  quiz_id int,
   student_id int,
-  passed_quiz_id int,
-  constraint 'fk__marks__passed_quizzes' foreign key (passed_quiz_id) references quizzes(quiz_id) on update cascade on delete cascade
+  constraint 'fk__passed_quizzes__quizzes' foreign key (quiz_id) references quizzes(quiz_id) on update cascade on delete cascade,
+  constraint 'fk__passed_quizzes__students' foreign key (student_id) references students(student_id) on update cascade on delete cascade
 );

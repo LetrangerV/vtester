@@ -50,23 +50,16 @@ create table students(
 create table assigned_quizzes(
   assigned_quiz_id int primary key auto_increment,
   quiz_id int,
-  class_id int,
+  student_id int,
   foreign key (quiz_id) references quizzes(quiz_id) on update cascade on delete cascade,
-  foreign key (class_id) references classes(class_id) on update cascade on delete cascade
+  foreign key (student_id) references students(student_id) on update cascade on delete cascade
 );
 
 create table passed_quizzes(
   passed_quiz_id int primary key auto_increment,
   quiz_id int,
-  class_id int,
-  foreign key (quiz_id) references quizzes(quiz_id) on update cascade on delete cascade,
-  foreign key (class_id) references classes(class_id) on update cascade on delete cascade
-);
-
-create table marks(
-  mark_id int primary key auto_increment,
   mark int,
   student_id int,
-  passed_quiz_id int,
-  foreign key (passed_quiz_id) references quizzes(quiz_id) on update cascade on delete cascade
+  foreign key (quiz_id) references quizzes(quiz_id) on update cascade on delete cascade,
+  foreign key (student_id) references students(student_id) on update cascade on delete cascade
 );

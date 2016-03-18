@@ -4,6 +4,7 @@
  */
 package com.letrangerv.vtester.persistence;
 
+import com.letrangerv.vtester.domain.PassedQuiz;
 import com.letrangerv.vtester.domain.QuizImpl;
 
 import java.util.List;
@@ -16,4 +17,6 @@ import java.util.List;
 public interface QuizDao {
     int insert(QuizImpl quiz);
     List<QuizImpl> findAssignedQuizzes(String userName);
+
+    List<PassedQuiz> findPassedQuizzes(String userName);
 }
