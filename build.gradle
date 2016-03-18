@@ -36,7 +36,8 @@ dependencies {
             "javax.servlet:javax.servlet-api:3.0.1",
             'mysql:mysql-connector-java:5.1.38',
 //            "javax.servlet.jsp.jstl:jstl:1.2",
-            'org.freemarker:freemarker:2.3.20'
+            'org.freemarker:freemarker:2.3.20',
+            'com.h2database:h2:1.4.191'
 
 //    def tomcatVersion = '7.0.62'
 //    tomcat "org.apache.tomcat.embed:tomcat-embed-core:${tomcatVersion}",

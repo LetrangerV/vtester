@@ -4,6 +4,8 @@
  */
 package com.letrangerv.vtester.config;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
@@ -15,5 +17,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @ComponentScan("com.letrangerv.vtester")
 public class AppConfig {
-
+    @Qualifier("devDbConfig")
+    @Autowired
+    private DbConfig m_dbConfig;
 }
