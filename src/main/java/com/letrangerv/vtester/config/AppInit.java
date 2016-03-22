@@ -1,7 +1,3 @@
-/**
- * @(#)AppInit.java 3/3/16.
- * Copyright (c) 2016 The Boeing Company All rights reserved.
- */
 package com.letrangerv.vtester.config;
 
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
@@ -13,28 +9,29 @@ import javax.servlet.ServletRegistration;
  * @version 1.0
  * @since 3/3/16
  */
+@SuppressWarnings("unused")
 public class AppInit extends AbstractAnnotationConfigDispatcherServletInitializer {
     @Override
-    protected Class<?>[] getRootConfigClasses() {
+    protected final Class<?>[] getRootConfigClasses() {
         return new Class<?>[]{
             WebConfig.class
         };
     }
 
     @Override
-    protected Class<?>[] getServletConfigClasses() {
+    protected final Class<?>[] getServletConfigClasses() {
         return new Class<?>[]{
             WebConfig.class
         };
     }
 
     @Override
-    protected String[] getServletMappings() {
+    protected final String[] getServletMappings() {
         return new String[]{"/"};
     }
 
     @Override
-    protected void customizeRegistration(ServletRegistration.Dynamic registration) {
+    protected final void customizeRegistration(final ServletRegistration.Dynamic registration) {
         registration.setInitParameter("throwExceptionIfNoHandlerFound", "true");
     }
 }

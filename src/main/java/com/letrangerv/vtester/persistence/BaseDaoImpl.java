@@ -1,14 +1,7 @@
-/**
- * @(#)BaseDaoImpl.java 3/11/16.
- * Copyright (c) 2016 The Boeing Company All rights reserved.
- */
 package com.letrangerv.vtester.persistence;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 
-import javax.sql.DataSource;
 import java.util.List;
 
 /**
@@ -16,58 +9,39 @@ import java.util.List;
  * @version 1.0
  * @since 3/11/16
  */
+@SuppressWarnings("unused")
 public abstract class BaseDaoImpl<T> implements BaseDao<T> {
-//    @Autowired
-//    private JdbcTemplate m_jdbcTemplate;
-    private RowMapper<T> m_rowMapper;
+    private RowMapper<T> rowMapper;
 
-//    public BaseDaoImpl(DataSource dataSource) {
-//        m_jdbcTemplate = new JdbcTemplate(dataSource);
-//    }
-//
-//    protected BaseDaoImpl() {
-//    }
-
-//    protected JdbcTemplate getJdbcTemplate() {
-//        return m_jdbcTemplate;
-//    }
-
-//    public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
-//        m_jdbcTemplate = jdbcTemplate;
-//    }
-
-    public RowMapper<T> getRowMapper() {
-        return m_rowMapper;
+    public final RowMapper<T> getRowMapper() {
+        return rowMapper;
     }
 
-    public void setRowMapper(RowMapper<T> rowMapper) {
-        m_rowMapper = rowMapper;
+    public final void setRowMapper(final RowMapper<T> rowMapper) {
+        this.rowMapper = rowMapper;
     }
 
     @Override
-    public int add(T object) {
-//        m_jdbcTemplate.update("sql", );
-        return 0;  //To change body of implemented methods use File | Settings | File Templates.
+    public final int add(T object) {
+        return 0;
     }
 
     @Override
-    public T find(int id) {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+    public final T find(final int id) {
+        return null;
     }
 
     @Override
-    public List<T> findAll() {
-//        m_jdbcTemplate.query("sql", new Object[]{}, m_rowMapper);
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+    public final List<T> findAll() {
+        return null;
     }
 
     @Override
-    public T update(T object) {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+    public final T update(T object) {
+        return null;
     }
 
     @Override
-    public void delete(int id) {
-        //To change body of implemented methods use File | Settings | File Templates.
+    public final void delete(final int id) {
     }
 }

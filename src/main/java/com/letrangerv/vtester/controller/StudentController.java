@@ -1,7 +1,3 @@
-/**
- * @(#)StudentController.java 3/18/16.
- * Copyright (c) 2016 The Boeing Company All rights reserved.
- */
 package com.letrangerv.vtester.controller;
 
 import com.letrangerv.vtester.domain.OneAnswerQuestion;
@@ -31,6 +27,7 @@ import java.util.Optional;
  */
 @Controller
 @RequestMapping("/student")
+@SuppressWarnings("unused")
 public class StudentController extends Utf8ContentController {
     @Autowired
     private QuizService m_quizService;

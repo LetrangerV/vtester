@@ -1,7 +1,3 @@
-/**
- * @(#)ControllerExceptionHandler.java 3/22/16.
- * Copyright (c) 2016 The Boeing Company All rights reserved.
- */
 package com.letrangerv.vtester.controller;
 
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -13,9 +9,10 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
  * @since 3/22/16
  */
 @ControllerAdvice
+@SuppressWarnings("unused")
 public class ControllerExceptionHandler {
     @ExceptionHandler(Exception.class)
-    public String handle500() {
+    public final String handle500() {
         return "error/500";
     }
 }

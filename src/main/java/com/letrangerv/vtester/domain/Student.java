@@ -1,7 +1,3 @@
-/**
- * @(#)Student.java 3/17/16.
- * Copyright (c) 2016 The Boeing Company All rights reserved.
- */
 package com.letrangerv.vtester.domain;
 
 /**
@@ -9,6 +5,7 @@ package com.letrangerv.vtester.domain;
  * @version 1.0
  * @since 3/17/16
  */
+@SuppressWarnings("unused")
 public class Student {
     private String firstName;
     private String lastName;

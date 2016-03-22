@@ -1,7 +1,3 @@
-/**
- * @(#)SqlPropertyBeanRegistry.java 3/17/16.
- * Copyright (c) 2016 The Boeing Company All rights reserved.
- */
 package com.letrangerv.vtester.config;
 
 import org.springframework.beans.factory.config.PropertiesFactoryBean;
@@ -19,10 +15,14 @@ import java.util.Properties;
  */
 @Configuration
 public class SqlPropertyBeanRegistry {
+    private static final String QUIZ_SQL_PATH = "src/main/resources/sql/queries/quiz.xml";
+    private static final String QUESTION_SQL_PATH = "src/main/resources/sql/queries/question.xml";
+    private static final String OPTION_SQL_PATH = "src/main/resources/sql/queries/option.xml";
+
     @Bean
-    public Properties quiz() {
+    public final Properties quiz() {
         PropertiesFactoryBean propertiesFactoryBean = new PropertiesFactoryBean();
-        propertiesFactoryBean.setLocation(new ClassPathResource("src/main/resources/sql/queries/quiz.xml"));
+        propertiesFactoryBean.setLocation(new ClassPathResource(QUIZ_SQL_PATH));
         Properties properties = null;
         try {
             propertiesFactoryBean.afterPropertiesSet();
@@ -34,9 +34,11 @@ public class SqlPropertyBeanRegistry {
     }
 
     @Bean
-    public Properties question() {
+    public final Properties question() {
         PropertiesFactoryBean propertiesFactoryBean = new PropertiesFactoryBean();
-        propertiesFactoryBean.setLocation(new ClassPathResource("src/main/resources/sql/queries/question.xml"));
+        propertiesFactoryBean.setLocation(
+            new ClassPathResource(QUESTION_SQL_PATH)
+        );
         Properties properties = null;
         try {
             propertiesFactoryBean.afterPropertiesSet();
@@ -48,9 +50,11 @@ public class SqlPropertyBeanRegistry {
     }
 
     @Bean
-    public Properties option() {
+    public final Properties option() {
         PropertiesFactoryBean propertiesFactoryBean = new PropertiesFactoryBean();
-        propertiesFactoryBean.setLocation(new ClassPathResource("src/main/resources/sql/queries/option.xml"));
+        propertiesFactoryBean.setLocation(
+            new ClassPathResource(OPTION_SQL_PATH)
+        );
         Properties properties = null;
         try {
             propertiesFactoryBean.afterPropertiesSet();

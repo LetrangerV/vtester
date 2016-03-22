@@ -1,7 +1,3 @@
-/**
- * @(#)QuizAssemblerImpl.java 3/10/16.
- * Copyright (c) 2016 The Boeing Company All rights reserved.
- */
 package com.letrangerv.vtester.persistence;
 
 import com.letrangerv.vtester.domain.*;
@@ -19,12 +15,10 @@ import java.util.List;
 public class QuizAssemblerImpl implements QuizAssembler {
     @Override
     public QuizImpl toQuiz(QuizDto quizDto) {
-        //todo maybe add AnswerOptionAssembler and QuestionAssembler
         List<Question> questions = new ArrayList<>();
         int[] numOfOptions = quizDto.getNumberOfOptions();
         int optionsCounter = 0;
         for (int i = 0; i < quizDto.getQuestionTypes().length; i++) {
-            //todo create different types of questions
             OneAnswerQuestion question = new OneAnswerQuestion();
             question.setQuestionText(quizDto.getQuestionText()[i]);
             question.setOptions(new ArrayList<>());
@@ -46,6 +40,6 @@ public class QuizAssemblerImpl implements QuizAssembler {
 
     @Override
     public QuizDto toQuizDto(QuizImpl quiz) {
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        return null;
     }
 }

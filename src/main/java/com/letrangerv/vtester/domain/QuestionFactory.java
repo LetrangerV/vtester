@@ -1,7 +1,3 @@
-/**
- * @(#)QuestionFactory.java 3/1/16.
- * Copyright (c) 2016 The Boeing Company All rights reserved.
- */
 package com.letrangerv.vtester.domain;
 
 /**
@@ -9,15 +5,17 @@ package com.letrangerv.vtester.domain;
  * @version 1.0
  * @since 3/1/16
  */
-public class QuestionFactory {
+@SuppressWarnings("unused")
+public final class QuestionFactory {
     private static final String ONE_ANSWER = "one_answer";
     private static final String MULTI_ANSWERS = "multi_answer";
     private static final String MAPPING = "mapping";
     private static final String USER_INPUT = "user_input";
 
-//    private RequestParser
+    private QuestionFactory() { }
 
-    public static Question createQuestion(final String typeOfQuestion) throws NoSuchQuestionTypeException {
+    public static Question createQuestion(final String typeOfQuestion)
+        throws NoSuchQuestionTypeException {
         switch (typeOfQuestion) {
             case ONE_ANSWER: {
                 return new OneAnswerQuestion();

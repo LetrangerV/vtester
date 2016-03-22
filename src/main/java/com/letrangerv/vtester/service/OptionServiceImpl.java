@@ -1,7 +1,3 @@
-/**
- * @(#)OptionServiceImpl.java 3/21/16.
- * Copyright (c) 2016 The Boeing Company All rights reserved.
- */
 package com.letrangerv.vtester.service;
 
 import com.letrangerv.vtester.domain.Option;
@@ -17,6 +13,7 @@ import java.util.List;
  * @since 3/21/16
  */
 @Component
+@SuppressWarnings("unused")
 public class OptionServiceImpl implements OptionService {
     @Autowired
     private OptionDao m_optionDao;

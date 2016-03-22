@@ -1,7 +1,3 @@
-/**
- * @(#)OneAnswerQuestionDao.java 3/11/16.
- * Copyright (c) 2016 The Boeing Company All rights reserved.
- */
 package com.letrangerv.vtester.persistence;
 
 import com.letrangerv.vtester.domain.OneAnswerQuestion;
@@ -43,7 +39,10 @@ public class OneAnswerQuestionDaoImpl implements OneAnswerQuestionDao {
     public int add(OneAnswerQuestion question, final int quizId, final String type) {
         KeyHolder keyHolder = new GeneratedKeyHolder();
         m_jdbcTemplate.update(connection -> {
-            PreparedStatement ps = connection.prepareStatement(queries.getProperty(INSERT_QUESTION_SQL), Statement.RETURN_GENERATED_KEYS);
+            PreparedStatement ps = connection.prepareStatement(
+                queries.getProperty(INSERT_QUESTION_SQL),
+                Statement.RETURN_GENERATED_KEYS
+            );
             ps.setString(1, question.getQuestionText());
             ps.setInt(2, quizId);
             ps.setString(3, type);

@@ -1,7 +1,3 @@
-/**
- * @(#)Utf8ContentController.java 3/10/16.
- * Copyright (c) 2016 The Boeing Company All rights reserved.
- */
 package com.letrangerv.vtester.controller;
 
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -17,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 public abstract class Utf8ContentController {
     @ModelAttribute
-    public void setVaryResponseHeader(HttpServletResponse response) {
+    public final void setVaryResponseHeader(final HttpServletResponse response) {
         response.setHeader("Content-Type", "text/html;charset=UTF-8");
     }
 }

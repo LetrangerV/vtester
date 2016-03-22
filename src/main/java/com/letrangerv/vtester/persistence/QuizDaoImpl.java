@@ -1,7 +1,3 @@
-/**
- * @(#)QuizDaoImpl.java 3/16/16.
- * Copyright (c) 2016 The Boeing Company All rights reserved.
- */
 package com.letrangerv.vtester.persistence;
 
 import com.letrangerv.vtester.domain.PassedQuiz;
@@ -25,27 +21,32 @@ import java.util.Properties;
  * @since 3/16/16
  */
 @Component
+@SuppressWarnings("unused")
 public class QuizDaoImpl implements QuizDao {
     public static final String INSERT_QUIZ_SQL = "quiz.insert";
     public static final String SELECT_ASSIGNED_QUIZZES = "assignedQuiz.select";
     private static final String SELECT_PASSED_QUIZZES = "passedQuiz.select";
 
-    private JdbcTemplate m_jdbcTemplate;
+    private JdbcTemplate jdbcTemplate;
 
+    @SuppressWarnings("MismatchedQueryAndUpdateOfCollection")
     @Autowired
     @Qualifier("quiz")
     private Properties queries;
 
     @Autowired
     public void setDataSource(DataSource dataSource) {
-       m_jdbcTemplate = new JdbcTemplate(dataSource);
+       jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
     @Override
     public int insert(QuizImpl quiz) {
         KeyHolder keyHolder = new GeneratedKeyHolder();
-        m_jdbcTemplate.update(connection -> {
-            PreparedStatement ps = connection.prepareStatement(queries.getProperty(INSERT_QUIZ_SQL), Statement.RETURN_GENERATED_KEYS);
+        jdbcTemplate.update(connection -> {
+            PreparedStatement ps = connection.prepareStatement(
+                queries.getProperty(INSERT_QUIZ_SQL),
+                Statement.RETURN_GENERATED_KEYS
+            );
             ps.setString(1, quiz.getTitle());
             return ps;
         }, keyHolder);
@@ -54,7 +55,7 @@ public class QuizDaoImpl implements QuizDao {
 
     @Override
     public List<QuizImpl> findAssignedQuizzes(String userName) {
-        return m_jdbcTemplate.query(
+        return jdbcTemplate.query(
             queries.getProperty(SELECT_ASSIGNED_QUIZZES),
             (resultSet, i) -> new QuizImpl(resultSet.getString("title")),
             userName
@@ -63,7 +64,7 @@ public class QuizDaoImpl implements QuizDao {
 
     @Override
     public List<PassedQuiz> findPassedQuizzes(String userName) {
-        return m_jdbcTemplate.query(
+        return jdbcTemplate.query(
             queries.getProperty(SELECT_PASSED_QUIZZES),
             (resultSet, i) -> {
                 QuizImpl quiz = new QuizImpl(resultSet.getString("title"));

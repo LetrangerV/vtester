@@ -1,7 +1,3 @@
-/**
- * @(#)QuizService.java 3/16/16.
- * Copyright (c) 2016 The Boeing Company All rights reserved.
- */
 package com.letrangerv.vtester.service;
 
 import com.letrangerv.vtester.domain.OneAnswerQuestion;
@@ -23,6 +19,7 @@ import java.util.List;
  * @since 3/16/16
  */
 @Component
+@SuppressWarnings("unused")
 public class QuizServiceImpl implements QuizService {
     @Autowired
     private OneAnswerQuestionDaoImpl m_questionDao;
@@ -57,6 +54,4 @@ public class QuizServiceImpl implements QuizService {
     public List<PassedQuiz> findPassedQuizzes(String userName) {
         return m_quizDao.findPassedQuizzes(userName);
     }
-
-    //todo delete assigned quiz and add to passed quiz in one transaction
 }

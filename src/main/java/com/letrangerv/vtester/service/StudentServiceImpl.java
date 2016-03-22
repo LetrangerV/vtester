@@ -1,7 +1,3 @@
-/**
- * @(#)StudentServiceImpl.java 3/18/16.
- * Copyright (c) 2016 The Boeing Company All rights reserved.
- */
 package com.letrangerv.vtester.service;
 
 import com.letrangerv.vtester.domain.QuizImpl;
@@ -17,13 +13,13 @@ import java.util.List;
  * @since 3/18/16
  */
 @Component
+@SuppressWarnings("unused")
 public class StudentServiceImpl implements StudentService {
-//    @Autowired
-//    private StudentDao m_studentDao;
+    @Autowired
+    private StudentDao m_studentDao;
 
     @Override
     public List<QuizImpl> findAssignedQuizzes(String userName) {
-//        return m_studentDao.findAssignedQuizzes(userName);
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+        return null;
     }
 }

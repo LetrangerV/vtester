@@ -1,7 +1,3 @@
-/**
- * @(#)BaseDao.java 3/11/16.
- * Copyright (c) 2016 The Boeing Company All rights reserved.
- */
 package com.letrangerv.vtester.persistence;
 
 import java.util.List;
@@ -11,6 +7,7 @@ import java.util.List;
  * @version 1.0
  * @since 3/11/16
  */
+@SuppressWarnings("unused")
 public interface BaseDao<T> {
     int add(T object);
     T find(final int id);

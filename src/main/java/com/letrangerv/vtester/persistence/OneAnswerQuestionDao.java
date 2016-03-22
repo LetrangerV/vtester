@@ -1,7 +1,3 @@
-/**
- * @(#)OneAnswerQuestionDao.java 3/21/16.
- * Copyright (c) 2016 The Boeing Company All rights reserved.
- */
 package com.letrangerv.vtester.persistence;
 
 import com.letrangerv.vtester.domain.OneAnswerQuestion;

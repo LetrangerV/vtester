@@ -1,7 +1,3 @@
-/**
- * @(#)Option.java 3/1/16.
- * Copyright (c) 2016 The Boeing Company All rights reserved.
- */
 package com.letrangerv.vtester.domain;
 
 /**
@@ -9,32 +5,33 @@ package com.letrangerv.vtester.domain;
  * @version 1.0
  * @since 3/1/16
  */
+@SuppressWarnings("unused")
 public class Option extends Entity {
     private String optionText;
     private boolean isRightAnswer;
     private int questionId;
 
-    public String getOptionText() {
+    public final String getOptionText() {
         return optionText;
     }
 
-    public void setOptionText(String optionText) {
+    public final void setOptionText(final String optionText) {
         this.optionText = optionText;
     }
 
-    public boolean isRightAnswer() {
+    public final boolean isRightAnswer() {
         return isRightAnswer;
     }
 
-    public void setRightAnswer(boolean rightAnswer) {
+    public final void setRightAnswer(final boolean rightAnswer) {
         isRightAnswer = rightAnswer;
     }
 
-    public int getQuestionId() {
+    public final int getQuestionId() {
         return questionId;
     }
 
-    public void setQuestionId(int questionId) {
+    public final void setQuestionId(final int questionId) {
         this.questionId = questionId;
     }
 }

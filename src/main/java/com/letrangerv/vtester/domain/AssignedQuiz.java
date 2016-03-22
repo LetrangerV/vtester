@@ -1,7 +1,3 @@
-/**
- * @(#)AssignedQuiz.java 3/17/16.
- * Copyright (c) 2016 The Boeing Company All rights reserved.
- */
 package com.letrangerv.vtester.domain;
 
 import java.time.LocalDateTime;
@@ -11,23 +7,24 @@ import java.time.LocalDateTime;
  * @version 1.0
  * @since 3/17/16
  */
+@SuppressWarnings("unused")
 public class AssignedQuiz {
-    private QuizImpl m_quiz;
-    private LocalDateTime m_deadline;
+    private QuizImpl quiz;
+    private LocalDateTime deadline;
 
-    public QuizImpl getQuiz() {
-        return m_quiz;
+    public final QuizImpl getQuiz() {
+        return quiz;
     }
 
-    public void setQuiz(QuizImpl quiz) {
-        m_quiz = quiz;
+    public final void setQuiz(final QuizImpl quiz) {
+        this.quiz = quiz;
     }
 
-    public LocalDateTime getDeadline() {
-        return m_deadline;
+    public final LocalDateTime getDeadline() {
+        return deadline;
     }
 
-    public void setDeadline(LocalDateTime deadline) {
-        m_deadline = deadline;
+    public final void setDeadline(final LocalDateTime deadline) {
+        this.deadline = deadline;
     }
 }

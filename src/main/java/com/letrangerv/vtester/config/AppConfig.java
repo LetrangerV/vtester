@@ -1,7 +1,3 @@
-/**
- * @(#)AppConfig.java 3/1/16.
- * Copyright (c) 2016 The Boeing Company All rights reserved.
- */
 package com.letrangerv.vtester.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,8 +12,9 @@ import org.springframework.context.annotation.Configuration;
  */
 @Configuration
 @ComponentScan("com.letrangerv.vtester")
+@SuppressWarnings("unused")
 public class AppConfig {
     @Qualifier("devDbConfig")
     @Autowired
-    private DbConfig m_dbConfig;
+    private DbConfig dbConfig;
 }

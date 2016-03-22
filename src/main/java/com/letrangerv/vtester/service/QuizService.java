@@ -1,7 +1,3 @@
-/**
- * @(#)QuizService.java 3/16/16.
- * Copyright (c) 2016 The Boeing Company All rights reserved.
- */
 package com.letrangerv.vtester.service;
 
 import com.letrangerv.vtester.domain.PassedQuiz;
@@ -17,6 +13,5 @@ import java.util.List;
 public interface QuizService {
     void insertQuiz(QuizImpl quiz);
     List<QuizImpl> findAssignedQuizzes(String userName);
-
     List<PassedQuiz> findPassedQuizzes(String userName);
 }

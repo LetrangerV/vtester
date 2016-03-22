@@ -1,7 +1,3 @@
-/**
- * @(#)NoSuchQuestionTypeException.java 3/1/16.
- * Copyright (c) 2016 The Boeing Company All rights reserved.
- */
 package com.letrangerv.vtester.domain;
 
 /**
@@ -10,7 +6,7 @@ package com.letrangerv.vtester.domain;
  * @since 3/1/16
  */
 public class NoSuchQuestionTypeException extends Exception {
-    public NoSuchQuestionTypeException(String s) {
+    public NoSuchQuestionTypeException(final String s) {
         super(s);
     }
 }

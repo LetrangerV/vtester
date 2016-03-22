@@ -1,7 +1,3 @@
-/**
- * @(#)WebConfig.java 3/3/16.
- * Copyright (c) 2016 The Boeing Company All rights reserved.
- */
 package com.letrangerv.vtester.config;
 
 import freemarker.template.TemplateException;
@@ -30,48 +26,53 @@ import java.io.IOException;
     "com.letrangerv.vtester.config",
 })
 public class WebConfig extends WebMvcConfigurerAdapter {
+    private static final String FREEMARKER_TEMPLATES_PATH = "classpath:web/WEB-INF/ftl";
+    private static final String ENCODING = "UTF-8";
+    private static final String FREEMARKER_EXT = ".ftl";
+    private static final String CONTENT_TYPE = "text/html;charset=UTF-8";
+
     @Override
-    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+    public final void addResourceHandlers(final ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/WEB-INF/**").addResourceLocations("/resources/");
     }
 
     @Override
-    public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
+    public final void configureDefaultServletHandling(
+        final DefaultServletHandlerConfigurer configurer
+    ) {
         configurer.enable();
     }
 
     @Bean
-    public FreeMarkerConfigurer freemarkerConfigurer() {
+    public final FreeMarkerConfigurer freemarkerConfigurer() {
         final FreeMarkerConfigurationFactory factory = new FreeMarkerConfigurationFactory();
-        factory.setTemplateLoaderPath("classpath:web/WEB-INF/ftl");
+        factory.setTemplateLoaderPath(FREEMARKER_TEMPLATES_PATH);
         try {
             freemarker.template.Configuration configuration = factory.createConfiguration();
-            configuration.setDefaultEncoding("UTF-8");
-            configuration.setOutputEncoding("UTF-8");
-            configuration.setURLEscapingCharset("UTF-8");
+            configuration.setDefaultEncoding(ENCODING);
+            configuration.setOutputEncoding(ENCODING);
+            configuration.setURLEscapingCharset(ENCODING);
             FreeMarkerConfigurer fmc = new FreeMarkerConfigurer();
             fmc.setConfiguration(configuration);
             return fmc;
-        } catch (IOException e) {
-            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
-        } catch (TemplateException e) {
-            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+        } catch (IOException | TemplateException e) {
+            e.printStackTrace();
         }
 
-          return null;
+        return null;
     }
 
     @Bean
-    public FreeMarkerViewResolver freeMarkerViewResolver() {
+    public final FreeMarkerViewResolver freeMarkerViewResolver() {
         FreeMarkerViewResolver resolver = new FreeMarkerViewResolver();
-        resolver.setSuffix(".ftl");
-        resolver.setContentType("text/html;charset=UTF-8");
+        resolver.setSuffix(FREEMARKER_EXT);
+        resolver.setContentType(CONTENT_TYPE);
 
         return resolver;
     }
 
     @Override
-    public void configureViewResolvers(ViewResolverRegistry registry) {
+    public final void configureViewResolvers(final ViewResolverRegistry registry) {
         registry.freeMarker();
     }
 }

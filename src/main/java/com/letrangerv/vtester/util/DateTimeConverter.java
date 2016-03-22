@@ -1,8 +1,6 @@
-/**
- * @(#)DateTimeConverter.java 3/17/16.
- * Copyright (c) 2016 The Boeing Company All rights reserved.
- */
 package com.letrangerv.vtester.util;
+
+import org.springframework.stereotype.Component;
 
 import java.time.Instant;
 import java.time.LocalDateTime;
@@ -14,6 +12,8 @@ import java.util.Date;
  * @version 1.0
  * @since 3/17/16
  */
+@Component
+@SuppressWarnings("unused")
 public final class DateTimeConverter {
     private static ZoneOffset UTC_ZONE = ZoneOffset.UTC;
 

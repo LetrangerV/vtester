@@ -1,7 +1,3 @@
-/**
- * @(#)DbConfig.java 3/11/16.
- * Copyright (c) 2016 The Boeing Company All rights reserved.
- */
 package com.letrangerv.vtester.config;
 
 import org.springframework.context.annotation.*;
@@ -20,7 +16,7 @@ import javax.sql.DataSource;
 @Configuration
 @EnableTransactionManagement
 @ComponentScan("com.letrangerv.vtester.persistence")
-@Import({SqlPropertyBeanRegistry.class})
+@Import({SqlPropertyBeanRegistry.class })
 @Profile("prod")
 public class ProdDbConfig implements DbConfig {
     private static final String DRIVER_NAME = "com.mysql.jdbc.Driver";
@@ -29,7 +25,7 @@ public class ProdDbConfig implements DbConfig {
     private static final String PASSWORD = "root";
 
     @Bean
-    public DataSource dataSource() {
+    public final DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName(DRIVER_NAME);
         dataSource.setUrl(URL);
@@ -39,7 +35,7 @@ public class ProdDbConfig implements DbConfig {
     }
 
     @Bean
-    public PlatformTransactionManager transactionManager() {
+    public final PlatformTransactionManager transactionManager() {
         return new DataSourceTransactionManager(dataSource());
     }
 }

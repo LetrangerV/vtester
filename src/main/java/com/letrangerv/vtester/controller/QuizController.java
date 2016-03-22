@@ -1,7 +1,3 @@
-/**
- * @(#)AddQuizController.java 3/1/16.
- * Copyright (c) 2016 The Boeing Company All rights reserved.
- */
 package com.letrangerv.vtester.controller;
 
 import com.letrangerv.vtester.domain.QuizImpl;
@@ -23,23 +19,23 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RequestMapping(path = "/quiz")
 public class QuizController extends Utf8ContentController {
     @Autowired
-    private QuizAssembler m_quizAssembler;
+    private QuizAssembler quizAssembler;
     @Autowired
-    private QuizService m_quizService;
+    private QuizService quizService;
 
     @RequestMapping(path = "/add", method = RequestMethod.GET)
-    public String addQuizPage() {
+    public final String addQuizPage() {
         return "supervisor/addQuiz";
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public void addTypes(
-        @RequestParam(name = "title", required = true) String title,
-        @RequestParam(name = "question_type", required = true) String[] questionTypes,
-        @RequestParam(name = "question_text", required = true) String[] questionText,
-        @RequestParam(name = "option_text", required = true) String[] optionText,
-        @RequestParam(name = "is-right-hid", required = true) boolean[] isRight,
-        @RequestParam(name = "options-count", required = true) int[] numOfOptions
+    public final void addTypes(
+        @RequestParam(name = "title", required = true) final String title,
+        @RequestParam(name = "question_type", required = true) final String[] questionTypes,
+        @RequestParam(name = "question_text", required = true) final String[] questionText,
+        @RequestParam(name = "option_text", required = true) final String[] optionText,
+        @RequestParam(name = "is-right-hid", required = true) final boolean[] isRight,
+        @RequestParam(name = "options-count", required = true) final int[] numOfOptions
     ) {
 
         QuizDto quizDto = new QuizDto();
@@ -50,12 +46,12 @@ public class QuizController extends Utf8ContentController {
         quizDto.setRightAnswer(isRight);
         quizDto.setNumberOfOptions(numOfOptions);
 
-        QuizImpl quiz = m_quizAssembler.toQuiz(quizDto);
-        m_quizService.insertQuiz(quiz);
+        QuizImpl quiz = quizAssembler.toQuiz(quizDto);
+        quizService.insertQuiz(quiz);
     }
 
     @RequestMapping(method = RequestMethod.GET)
-    public String get() {
-        return "quiz"; //todo redirect
+    public final String get() {
+        return "quiz";
     }
 }

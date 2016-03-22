@@ -1,7 +1,3 @@
-/**
- * @(#)OneAnswerQuestion.java 2/29/16.
- * Copyright (c) 2016 The Boeing Company All rights reserved.
- */
 package com.letrangerv.vtester.domain;
 
 import java.util.List;
@@ -13,32 +9,32 @@ import java.util.List;
  */
 public class OneAnswerQuestion extends Entity implements Question {
     private String questionText;
-    private List<Option> m_options;
+    private List<Option> options;
 
-    public String getQuestionText() {
+    public final String getQuestionText() {
         return questionText;
     }
 
-    public void setQuestionText(String questionText) {
+    public final void setQuestionText(final String questionText) {
         this.questionText = questionText;
     }
 
-    public void setOptions(List<Option> options) {
-        m_options = options;
+    public final void setOptions(final List<Option> options) {
+        this.options = options;
     }
 
-    public List<Option> getOptions() {
-        return m_options;
+    public final List<Option> getOptions() {
+        return options;
     }
 
     @Override
-    public int evaluate() {
+    public final int evaluate() {
 
         return 0;
     }
 
     @Override
-    public int getMaxScore() {
+    public final int getMaxScore() {
         return 1;
     }
 }

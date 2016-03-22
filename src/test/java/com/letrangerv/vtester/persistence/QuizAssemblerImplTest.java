@@ -1,7 +1,3 @@
-/**
- * @(#)QuizAssemblerImplTest.java 3/11/16.
- * Copyright (c) 2016 The Boeing Company All rights reserved.
- */
 package com.letrangerv.vtester.persistence;
 
 //import com.letrangerv.vtester.config.TestAppConfig;

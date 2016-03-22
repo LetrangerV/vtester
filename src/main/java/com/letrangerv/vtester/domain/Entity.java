@@ -1,7 +1,3 @@
-/**
- * @(#)Entity.java 3/11/16.
- * Copyright (c) 2016 The Boeing Company All rights reserved.
- */
 package com.letrangerv.vtester.domain;
 
 /**
@@ -12,11 +8,11 @@ package com.letrangerv.vtester.domain;
 public abstract class Entity {
     private int id;
 
-    public int getId() {
+    public final int getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public final void setId(final int id) {
         this.id = id;
     }
 }

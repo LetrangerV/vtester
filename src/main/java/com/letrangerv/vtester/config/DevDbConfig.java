@@ -1,12 +1,7 @@
-/**
- * @(#)DevDbConfig.java 3/18/16.
- * Copyright (c) 2016 The Boeing Company All rights reserved.
- */
 package com.letrangerv.vtester.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Profile;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
@@ -22,7 +17,7 @@ import javax.sql.DataSource;
 @Configuration
 public class DevDbConfig implements DbConfig {
     @Bean
-    public DataSource dataSource() {
+    public final DataSource dataSource() {
         EmbeddedDatabaseBuilder builder = new EmbeddedDatabaseBuilder();
         builder
             .setType(EmbeddedDatabaseType.H2)
@@ -32,7 +27,7 @@ public class DevDbConfig implements DbConfig {
     }
 
     @Bean
-    public PlatformTransactionManager transactionManager() {
+    public final PlatformTransactionManager transactionManager() {
         return new DataSourceTransactionManager(dataSource());
     }
 }
