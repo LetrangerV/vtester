@@ -6,7 +6,6 @@ drop table if exists classes;
 drop table if exists students;
 drop table if exists assigned_quizzes;
 drop table if exists passed_quizzes;
-drop table if exists marks;
 
 create table quizzes(
   quiz_id int primary key auto_increment,

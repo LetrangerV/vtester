@@ -30,7 +30,7 @@ public class QuizAssemblerImpl implements QuizAssembler {
             question.setOptions(new ArrayList<>());
 
             for (int j = 0; j < numOfOptions[i]; j++) {
-                AnswerOption option = new AnswerOption();
+                Option option = new Option();
                 option.setOptionText(quizDto.getOptionText()[optionsCounter]);
                 option.setRightAnswer(quizDto.getRightAnswer()[optionsCounter]);
 

@@ -21,7 +21,8 @@
     <tbody>
     <#list assignedQuizzes as aQuiz>
     <tr class='${["alt", ""][aQuiz_index%2]}'>
-      <td>${aQuiz.title}</td>
+      <td><a href="/student/pass/${aQuiz.title}">${aQuiz.title}</a></td>
+      <#--<td><a href="/pass?title=${aQuiz.title}">${aQuiz.title}</a></td>-->
     <#--<td>${aQuiz.deadline}</td>-->
     </tr>
     </#list>

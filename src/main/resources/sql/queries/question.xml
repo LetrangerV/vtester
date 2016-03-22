@@ -1,6 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
+  <entry key="question.select.by.quiz">
+    select
+      question_id,
+      text,
+      type_id
+    from questions
+    where
+      quiz_id=(
+        select
+          quiz_id
+        from quizzes
+        where
+          title=?)
+  </entry>
   <entry key="question.insert">
     insert
     into questions (

@@ -8,7 +8,7 @@ import com.letrangerv.vtester.domain.OneAnswerQuestion;
 import com.letrangerv.vtester.domain.PassedQuiz;
 import com.letrangerv.vtester.domain.Question;
 import com.letrangerv.vtester.domain.QuizImpl;
-import com.letrangerv.vtester.persistence.OneAnswerQuestionDao;
+import com.letrangerv.vtester.persistence.OneAnswerQuestionDaoImpl;
 import com.letrangerv.vtester.persistence.OptionDao;
 import com.letrangerv.vtester.persistence.QuizDao;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +25,7 @@ import java.util.List;
 @Component
 public class QuizServiceImpl implements QuizService {
     @Autowired
-    private OneAnswerQuestionDao m_questionDao;
+    private OneAnswerQuestionDaoImpl m_questionDao;
     @Autowired
     private QuizDao m_quizDao;
     @Autowired

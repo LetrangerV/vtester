@@ -4,7 +4,7 @@
  */
 package com.letrangerv.vtester.persistence;
 
-import com.letrangerv.vtester.domain.AnswerOption;
+import com.letrangerv.vtester.domain.Option;
 
 import java.util.List;
 
@@ -14,5 +14,6 @@ import java.util.List;
  * @since 3/16/16
  */
 public interface OptionDao {
-    int[] batchAdd(List<AnswerOption> options, int questionId);
+    int[] batchAdd(List<Option> options, int questionId);
+    List<Option> getByQuestionIds(List<Integer> questionIds);
 }

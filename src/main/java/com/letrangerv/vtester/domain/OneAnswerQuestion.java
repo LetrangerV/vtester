@@ -13,7 +13,7 @@ import java.util.List;
  */
 public class OneAnswerQuestion extends Entity implements Question {
     private String questionText;
-    private List<AnswerOption> m_options;
+    private List<Option> m_options;
 
     public String getQuestionText() {
         return questionText;
@@ -23,11 +23,11 @@ public class OneAnswerQuestion extends Entity implements Question {
         this.questionText = questionText;
     }
 
-    public void setOptions(List<AnswerOption> options) {
+    public void setOptions(List<Option> options) {
         m_options = options;
     }
 
-    public List<AnswerOption> getOptions() {
+    public List<Option> getOptions() {
         return m_options;
     }
 

@@ -20,4 +20,14 @@
       question_id
     from options
   </entry>
+  <entry key="option.select.by.questions">
+    select
+      option_id,
+      text,
+      is_right,
+      question_id
+    from options
+    where
+      question_id in (:ids)
+  </entry>
 </properties>
