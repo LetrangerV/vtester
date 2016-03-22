@@ -27,6 +27,11 @@ public class QuizController extends Utf8ContentController {
     @Autowired
     private QuizService m_quizService;
 
+    @RequestMapping(path = "/add", method = RequestMethod.GET)
+    public String addQuizPage() {
+        return "supervisor/addQuiz";
+    }
+
     @RequestMapping(method = RequestMethod.POST)
     public void addTypes(
         @RequestParam(name = "title", required = true) String title,
