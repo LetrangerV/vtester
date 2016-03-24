@@ -15,9 +15,9 @@ import java.util.List;
 @Service
 public class OneAnswerQuestionServiceImpl implements OneAnswerQuestionService {
     @Autowired
-    private OneAnswerQuestionDaoImpl m_questionDao;
+    private OneAnswerQuestionDaoImpl questionDao;
 
-    public List<OneAnswerQuestion> getByQuiz(String title) {
-        return m_questionDao.getByQuiz(title);
+    public final List<OneAnswerQuestion> getByQuiz(final String title) {
+        return questionDao.getByQuiz(title);
     }
 }

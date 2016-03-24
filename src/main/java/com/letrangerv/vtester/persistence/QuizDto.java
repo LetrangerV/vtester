@@ -13,51 +13,51 @@ public class QuizDto {
     private boolean[] isRightAnswer;
     private int[] numberOfOptions;
 
-    public String getTitle() {
+    public final String getTitle() {
         return title;
     }
 
-    public void setTitle(String title) {
+    public final void setTitle(final String title) {
         this.title = title;
     }
 
-    public String[] getQuestionTypes() {
+    public final String[] getQuestionTypes() {
         return questionTypes;
     }
 
-    public void setQuestionTypes(String[] questionTypes) {
+    public final void setQuestionTypes(final String[] questionTypes) {
         this.questionTypes = questionTypes;
     }
 
-    public String[] getQuestionText() {
+    public final String[] getQuestionText() {
         return questionText;
     }
 
-    public void setQuestionText(String[] questionText) {
+    public final void setQuestionText(final String[] questionText) {
         this.questionText = questionText;
     }
 
-    public String[] getOptionText() {
+    public final String[] getOptionText() {
         return optionText;
     }
 
-    public void setOptionText(String[] optionText) {
+    public final void setOptionText(final String[] optionText) {
         this.optionText = optionText;
     }
 
-    public boolean[] getRightAnswer() {
+    public final boolean[] getRightAnswer() {
         return isRightAnswer;
     }
 
-    public void setRightAnswer(boolean[] rightAnswer) {
+    public final void setRightAnswer(final boolean[] rightAnswer) {
         isRightAnswer = rightAnswer;
     }
 
-    public int[] getNumberOfOptions() {
+    public final int[] getNumberOfOptions() {
         return numberOfOptions;
     }
 
-    public void setNumberOfOptions(int[] numberOfOptions) {
+    public final void setNumberOfOptions(final int[] numberOfOptions) {
         this.numberOfOptions = numberOfOptions;
     }
 }

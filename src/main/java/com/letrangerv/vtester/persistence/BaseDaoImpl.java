@@ -22,7 +22,7 @@ public abstract class BaseDaoImpl<T> implements BaseDao<T> {
     }
 
     @Override
-    public final int add(T object) {
+    public final int add(final T object) {
         return 0;
     }
 
@@ -37,7 +37,7 @@ public abstract class BaseDaoImpl<T> implements BaseDao<T> {
     }
 
     @Override
-    public final T update(T object) {
+    public final T update(final T object) {
         return null;
     }
 

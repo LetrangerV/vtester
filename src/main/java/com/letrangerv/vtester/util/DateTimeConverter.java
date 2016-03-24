@@ -15,16 +15,16 @@ import java.util.Date;
 @Component
 @SuppressWarnings("unused")
 public final class DateTimeConverter {
-    private static ZoneOffset UTC_ZONE = ZoneOffset.UTC;
+    private static final ZoneOffset UTC_ZONE = ZoneOffset.UTC;
 
-    private DateTimeConverter(){}
+    private DateTimeConverter() { }
 
-    public static Date LdtToDate(LocalDateTime ldt) {
+    public static Date ldtToDate(final LocalDateTime ldt) {
         Instant instant = ldt.toInstant(UTC_ZONE);
         return Date.from(instant);
     }
 
-    public static LocalDateTime DateToLdt(Date date) {
+    public static LocalDateTime dateToLdt(final Date date) {
         Instant instant = Instant.ofEpochMilli(date.getTime());
         return LocalDateTime.ofInstant(instant, UTC_ZONE);
     }

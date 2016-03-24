@@ -14,7 +14,7 @@ import java.util.List;
 @Component
 public class QuizAssemblerImpl implements QuizAssembler {
     @Override
-    public QuizImpl toQuiz(QuizDto quizDto) {
+    public final QuizImpl toQuiz(final QuizDto quizDto) {
         List<Question> questions = new ArrayList<>();
         int[] numOfOptions = quizDto.getNumberOfOptions();
         int optionsCounter = 0;
@@ -39,7 +39,7 @@ public class QuizAssemblerImpl implements QuizAssembler {
     }
 
     @Override
-    public QuizDto toQuizDto(QuizImpl quiz) {
+    public final QuizDto toQuizDto(final QuizImpl quiz) {
         return null;
     }
 }

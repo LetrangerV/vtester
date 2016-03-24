@@ -16,10 +16,10 @@ import java.util.List;
 @SuppressWarnings("unused")
 public class OptionServiceImpl implements OptionService {
     @Autowired
-    private OptionDao m_optionDao;
+    private OptionDao optionDao;
 
     @Override
-    public List<Option> getByQuestionIds(List<Integer> questionIds) {
-        return m_optionDao.getByQuestionIds(questionIds);
+    public final List<Option> getByQuestionIds(final List<Integer> questionIds) {
+        return optionDao.getByQuestionIds(questionIds);
     }
 }
