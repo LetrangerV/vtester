@@ -1,7 +1,5 @@
 package com.letrangerv.vtester.domain;
 
-import java.time.LocalDateTime;
-
 /**
  * @author VStrokan
  * @version 1.0
@@ -10,7 +8,8 @@ import java.time.LocalDateTime;
 @SuppressWarnings("unused")
 public class AssignedQuiz {
     private QuizImpl quiz;
-    private LocalDateTime deadline;
+    private Integer mark;
+    private boolean isPassed;
 
     public final QuizImpl getQuiz() {
         return quiz;
@@ -20,11 +19,19 @@ public class AssignedQuiz {
         this.quiz = quiz;
     }
 
-    public final LocalDateTime getDeadline() {
-        return deadline;
+    public final Integer getMark() {
+        return mark;
     }
 
-    public final void setDeadline(final LocalDateTime deadline) {
-        this.deadline = deadline;
+    public final void setMark(Integer mark) {
+        this.mark = mark;
+    }
+
+    public final boolean isPassed() {
+        return isPassed;
+    }
+
+    public final void setPassed(boolean passed) {
+        isPassed = passed;
     }
 }

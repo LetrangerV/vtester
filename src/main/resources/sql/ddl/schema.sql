@@ -25,9 +25,19 @@ create table options(
   constraint 'fk__options__questions' foreign key (question_id) references questions(question_id) on update cascade on delete cascade
 );
 
+create table supervisors(
+  supervisor_id int primary key auto_increment,
+  first_name varchar(35),
+  last_name varchar(35),
+  email varchar(255),
+  constraint 'unique_supervisor' unique (email)
+);
+
 create table classes(
   class_id int primary key auto_increment,
-  name varchar(4)
+  name varchar(4),
+  supervisor_id int,
+  constraint 'fk__classes__supervisors' foreign key (supervisor_id) references supervisors(supervisor_id) on update cascade on delete cascade
 );
 
 create table students(
@@ -42,17 +52,10 @@ create table students(
 
 create table assigned_quizzes(
   assigned_quiz_id int primary key auto_increment,
+  mark int,
+  is_passed boolean,
   quiz_id int,
   student_id int,
   constraint 'fk__assigned_quizzes__quizzes' foreign key (quiz_id) references quizzes(quiz_id) on update cascade on delete cascade,
   constraint 'fk__assigned_quizzes__students' foreign key (student_id) references students(student_id) on update cascade on delete cascade
-);
-
-create table passed_quizzes(
-  passed_quiz_id int primary key auto_increment,
-  mark int,
-  quiz_id int,
-  student_id int,
-  constraint 'fk__passed_quizzes__quizzes' foreign key (quiz_id) references quizzes(quiz_id) on update cascade on delete cascade,
-  constraint 'fk__passed_quizzes__students' foreign key (student_id) references students(student_id) on update cascade on delete cascade
 );

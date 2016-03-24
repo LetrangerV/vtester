@@ -7,9 +7,9 @@ insert into quizzes (title) values ('quiz2');
 insert into quizzes (title) values ('quiz3');
 insert into quizzes (title) values ('quiz1');
 
-insert into classes (name) values ('9а');
-insert into classes (name) values ('8б');
-insert into classes (name) values ('11в');
+insert into classes (name) values ('9a');
+insert into classes (name) values ('8b');
+insert into classes (name) values ('11c');
 
 insert into questions(text, quiz_id, type_id) values ('question1', 2, 1);
 insert into questions(text, quiz_id, type_id) values ('question2', 2, 1);
@@ -26,6 +26,11 @@ insert into students (first_name, last_name, email, class_id) values ('Вася'
 insert into students (first_name, last_name, email, class_id) values ('Петя', 'Петров', 'petrov@22', 2);
 insert into students (first_name, last_name, email, class_id) values ('Иван', 'Иванов', 'iv@i', 1);
 
-insert into assigned_quizzes (quiz_id, student_id) values (2, 1);
+insert into assigned_quizzes (is_passed, quiz_id, student_id) values (FALSE, 2, 1);
+insert into assigned_quizzes (mark, is_passed, quiz_id, student_id) values (4, TRUE, 3, 1);
+insert into assigned_quizzes (mark, is_passed, quiz_id, student_id) values (5, FALSE, 2, 3);
+insert into assigned_quizzes (mark, is_passed, quiz_id, student_id) values (2, TRUE, 1, 3);
 
-insert into passed_quizzes (mark, quiz_id, student_id) values (4, 3, 1);
+insert into supervisors (first_name, last_name, email) values ('admin', 'surname', 'admin@admin');
+
+update classes set supervisor_id = 1

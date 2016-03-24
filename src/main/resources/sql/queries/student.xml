@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+  <entry key="students.marks.select.by.class">
+    select
+      s.student_id,
+      first_name,
+      last_name,
+      email,
+      mark,
+      title
+    from students s
+    join assigned_quizzes aq
+      on s.student_id = aq.student_id
+    join quizzes q
+      on q.quiz_id = aq.quiz_id
+    where
+      s.student_id in (select student_id from students where class_id=(select class_id from classes where name=?))
+  </entry>
+  <entry key="class.select.by.supervisor">
+    select
+      name
+    from classes
+    where
+      supervisor_id=(
+        select
+          supervisor_id
+        from supervisors
+        where
+          email=?)
+    order by name asc
+  </entry>
+  <entry key="select.mark.by.quiz.class">
+    select
+      passed_quiz_id
+      <!--student_id,-->
+      title,
+      mark
+    from assigned_quizzes aq
+    join quizzes q
+      on q.quiz_id = aq.quiz_id
+    where
+      quiz_id=?,
+      student_id in (select student_id from students where class_id=(select class_id from classes where name=?))
+  </entry>
+  <entry key="quiz.select.by.class">
+    select distinct
+      title
+    from assigned_quizzes aq
+    join quizzes q
+      on aq.quiz_id=q.quiz_id
+    where
+      student_id in (
+      select
+        student_id
+      from classes
+      where
+        name=?)
+  </entry>
+</properties>

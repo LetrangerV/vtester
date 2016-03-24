@@ -1,9 +1,6 @@
 package com.letrangerv.vtester.controller;
 
-import com.letrangerv.vtester.domain.OneAnswerQuestion;
-import com.letrangerv.vtester.domain.Option;
-import com.letrangerv.vtester.domain.PassedQuiz;
-import com.letrangerv.vtester.domain.QuizImpl;
+import com.letrangerv.vtester.domain.*;
 import com.letrangerv.vtester.service.OneAnswerQuestionServiceImpl;
 import com.letrangerv.vtester.service.OptionService;
 import com.letrangerv.vtester.service.QuizService;
@@ -30,20 +27,31 @@ import java.util.Optional;
 @SuppressWarnings("unused")
 public class StudentController extends Utf8ContentController {
     @Autowired
-    private QuizService m_quizService;
+    private QuizService quizService;
     @Autowired
-    private OneAnswerQuestionServiceImpl m_questionService;
+    private OneAnswerQuestionServiceImpl questionService;
     @Autowired
-    private StudentService m_studentService;
+    private StudentService studentService;
     @Autowired
-    private OptionService m_optionService;
+    private OptionService optionService;
 
     @RequestMapping(method = RequestMethod.GET)
     public String showMainPage(Model model, Principal principal) {
-//        List<QuizImpl> assignedQuizzes = m_quizService.findAssignedQuizzes(principal.getName());
-//        List<PassedQuiz> passedQuizzes = m_quizService.findPassedQuizzes(principal.getName());
-        List<QuizImpl> assignedQuizzes = m_quizService.findAssignedQuizzes("pupkin@22");
-        List<PassedQuiz> passedQuizzes = m_quizService.findPassedQuizzes("pupkin@22");
+//        List<QuizImpl> allQuizzes = quizService.findQuizzesByUser(principal.getName());
+//        List<PassedQuiz> passedQuizzes = quizService.findPassedQuizzes(principal.getName());
+        List<AssignedQuiz> allQuizzes = quizService.findQuizzesByUser("pupkin@22");
+
+        List<AssignedQuiz> assignedQuizzes = new ArrayList<>();
+        List<AssignedQuiz> passedQuizzes = new ArrayList<>();
+
+        for (AssignedQuiz q : allQuizzes) {
+            if (q.isPassed()) {
+                passedQuizzes.add(q);
+            } else {
+                assignedQuizzes.add(q);
+            }
+        }
+
         model.addAttribute("assignedQuizzes", assignedQuizzes);
         model.addAttribute("passedQuizzes", passedQuizzes);
         return "student/studentAllQuizzes";
@@ -52,7 +60,7 @@ public class StudentController extends Utf8ContentController {
     @RequestMapping(path = "/pass/{title}", method = RequestMethod.GET)
     public String passQuiz(Model model, @PathVariable final String title) {
         //TODO bind sent results to current user
-        List<OneAnswerQuestion> questions = m_questionService.getByQuiz(title);
+        List<OneAnswerQuestion> questions = questionService.getByQuiz(title);
         int[] questionIds = questions.stream().mapToInt(OneAnswerQuestion::getId).toArray();
 
         List<Integer> list = new ArrayList<>(questionIds.length);
@@ -60,7 +68,7 @@ public class StudentController extends Utf8ContentController {
             list.add(questionId);
         }
 
-        List<Option> options = m_optionService.getByQuestionIds(list);
+        List<Option> options = optionService.getByQuestionIds(list);
 
         options.stream().forEach(o -> {
             Optional<OneAnswerQuestion> question = (
@@ -77,6 +85,16 @@ public class StudentController extends Utf8ContentController {
         return "student/pass";
     }
 
+    @RequestMapping(path = "/classes", method = RequestMethod.GET)
+    public String getStudentsAndMarks(Model model, final Principal principal) {
+//        List<Student> students = studentService.findByClass(principal.getName());
+//        List<StudentClass> classes = studentService.findBySupervisor(principal.getName());
+        List<StudentClass> classes = studentService.findBySupervisor("admin@admin");
+        model.addAttribute("classes", classes);
+
+        return "supervisor/classes";
+    }
+
     @RequestMapping(path = "/quiz", method = RequestMethod.POST)
     public String evaluateQuiz() {
         //todo parse sent results, replace by json in future
@@ -85,7 +103,6 @@ public class StudentController extends Utf8ContentController {
     }
 
     @RequestMapping(path = "/success", method = RequestMethod.GET)
-
     public String success() {
         return "student/success";
     }

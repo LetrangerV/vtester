@@ -1,6 +1,6 @@
 package com.letrangerv.vtester.persistence;
 
-import com.letrangerv.vtester.domain.PassedQuiz;
+import com.letrangerv.vtester.domain.AssignedQuiz;
 import com.letrangerv.vtester.domain.QuizImpl;
 import com.mysql.jdbc.Statement;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,8 +24,7 @@ import java.util.Properties;
 @SuppressWarnings("unused")
 public class QuizDaoImpl implements QuizDao {
     public static final String INSERT_QUIZ_SQL = "quiz.insert";
-    public static final String SELECT_ASSIGNED_QUIZZES = "assignedQuiz.select";
-    private static final String SELECT_PASSED_QUIZZES = "passedQuiz.select";
+    public static final String SELECT_QUIZZES_BY_USER = "assignedQuiz.select.by.user";
 
     private JdbcTemplate jdbcTemplate;
 
@@ -54,24 +53,16 @@ public class QuizDaoImpl implements QuizDao {
     }
 
     @Override
-    public List<QuizImpl> findAssignedQuizzes(String userName) {
+    public List<AssignedQuiz> findQuizzesByUser(String userName) {
         return jdbcTemplate.query(
-            queries.getProperty(SELECT_ASSIGNED_QUIZZES),
-            (resultSet, i) -> new QuizImpl(resultSet.getString("title")),
-            userName
-        );
-    }
-
-    @Override
-    public List<PassedQuiz> findPassedQuizzes(String userName) {
-        return jdbcTemplate.query(
-            queries.getProperty(SELECT_PASSED_QUIZZES),
+            queries.getProperty(SELECT_QUIZZES_BY_USER),
             (resultSet, i) -> {
                 QuizImpl quiz = new QuizImpl(resultSet.getString("title"));
-                PassedQuiz passedQuiz = new PassedQuiz();
-                passedQuiz.setQuiz(quiz);
-                passedQuiz.setMark(resultSet.getInt("mark"));
-                return passedQuiz;
+                AssignedQuiz assignedQuiz = new AssignedQuiz();
+                assignedQuiz.setQuiz(quiz);
+                assignedQuiz.setMark(resultSet.getInt("mark"));
+                assignedQuiz.setPassed(resultSet.getBoolean("is_passed"));
+                return assignedQuiz;
             },
             userName
         );

@@ -25,7 +25,7 @@ public class ProdDbConfig implements DbConfig {
     private static final String PASSWORD = "root";
 
     @Bean
-    public final DataSource dataSource() {
+    public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName(DRIVER_NAME);
         dataSource.setUrl(URL);
@@ -35,7 +35,7 @@ public class ProdDbConfig implements DbConfig {
     }
 
     @Bean
-    public final PlatformTransactionManager transactionManager() {
+    public PlatformTransactionManager transactionManager() {
         return new DataSourceTransactionManager(dataSource());
     }
 }

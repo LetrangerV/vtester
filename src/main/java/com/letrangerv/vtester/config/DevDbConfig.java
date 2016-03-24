@@ -1,11 +1,11 @@
 package com.letrangerv.vtester.config;
 
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.*;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.sql.DataSource;
 
@@ -15,9 +15,12 @@ import javax.sql.DataSource;
  * @since 3/18/16
  */
 @Configuration
+@EnableTransactionManagement
+@ComponentScan("com.letrangerv.vtester.persistence")
+@Import({SqlPropertyBeanRegistry.class })
 public class DevDbConfig implements DbConfig {
     @Bean
-    public final DataSource dataSource() {
+    public DataSource dataSource() {
         EmbeddedDatabaseBuilder builder = new EmbeddedDatabaseBuilder();
         builder
             .setType(EmbeddedDatabaseType.H2)
@@ -27,7 +30,7 @@ public class DevDbConfig implements DbConfig {
     }
 
     @Bean
-    public final PlatformTransactionManager transactionManager() {
+    public PlatformTransactionManager transactionManager() {
         return new DataSourceTransactionManager(dataSource());
     }
 }

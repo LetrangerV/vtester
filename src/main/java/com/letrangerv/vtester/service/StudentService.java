@@ -1,6 +1,9 @@
 package com.letrangerv.vtester.service;
 
+import com.letrangerv.vtester.domain.AssignedQuiz;
 import com.letrangerv.vtester.domain.QuizImpl;
+import com.letrangerv.vtester.domain.Student;
+import com.letrangerv.vtester.domain.StudentClass;
 
 import java.util.List;
 
@@ -12,4 +15,7 @@ import java.util.List;
 @SuppressWarnings("unused")
 public interface StudentService {
     List<QuizImpl> findAssignedQuizzes(String userName);
+    List<Student> findByClass(final String className);
+    List<StudentClass> findBySupervisor(final String email);
+    List<AssignedQuiz> findQuizzesByClass(final String className);
 }

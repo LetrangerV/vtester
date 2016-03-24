@@ -5,7 +5,7 @@ drop table if exists options;
 drop table if exists classes;
 drop table if exists students;
 drop table if exists assigned_quizzes;
-drop table if exists passed_quizzes;
+drop table if exists supervisors;
 
 create table quizzes(
   quiz_id int primary key auto_increment,
@@ -32,9 +32,18 @@ create table options(
   foreign key (question_id) references questions(question_id) on update cascade on delete cascade
 );
 
+create table supervisors(
+  supervisor_id int primary key auto_increment,
+  first_name varchar(35),
+  last_name varchar(35),
+  email varchar(255) unique
+);
+
 create table classes(
   class_id int primary key auto_increment,
-  name varchar(4)
+  name varchar(4),
+  supervisor_id int,
+  foreign key (supervisor_id) references supervisors(supervisor_id) on update cascade on delete cascade
 );
 
 create table students(
@@ -48,16 +57,9 @@ create table students(
 
 create table assigned_quizzes(
   assigned_quiz_id int primary key auto_increment,
-  quiz_id int,
-  student_id int,
-  foreign key (quiz_id) references quizzes(quiz_id) on update cascade on delete cascade,
-  foreign key (student_id) references students(student_id) on update cascade on delete cascade
-);
-
-create table passed_quizzes(
-  passed_quiz_id int primary key auto_increment,
-  quiz_id int,
   mark int,
+  is_passed boolean,
+  quiz_id int,
   student_id int,
   foreign key (quiz_id) references quizzes(quiz_id) on update cascade on delete cascade,
   foreign key (student_id) references students(student_id) on update cascade on delete cascade

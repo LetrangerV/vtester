@@ -23,7 +23,7 @@ import java.io.IOException;
     "com.letrangerv.vtester.persistence",
     "com.letrangerv.vtester.service",
     "com.letrangerv.vtester.domain",
-    "com.letrangerv.vtester.config",
+    "com.letrangerv.vtester.config"
 })
 public class WebConfig extends WebMvcConfigurerAdapter {
     private static final String FREEMARKER_TEMPLATES_PATH = "classpath:web/WEB-INF/ftl";
@@ -44,7 +44,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
     }
 
     @Bean
-    public final FreeMarkerConfigurer freemarkerConfigurer() {
+    public FreeMarkerConfigurer freemarkerConfigurer() {
         final FreeMarkerConfigurationFactory factory = new FreeMarkerConfigurationFactory();
         factory.setTemplateLoaderPath(FREEMARKER_TEMPLATES_PATH);
         try {
@@ -63,7 +63,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
     }
 
     @Bean
-    public final FreeMarkerViewResolver freeMarkerViewResolver() {
+    public FreeMarkerViewResolver freeMarkerViewResolver() {
         FreeMarkerViewResolver resolver = new FreeMarkerViewResolver();
         resolver.setSuffix(FREEMARKER_EXT);
         resolver.setContentType(CONTENT_TYPE);

@@ -1,7 +1,7 @@
 package com.letrangerv.vtester.service;
 
+import com.letrangerv.vtester.domain.AssignedQuiz;
 import com.letrangerv.vtester.domain.OneAnswerQuestion;
-import com.letrangerv.vtester.domain.PassedQuiz;
 import com.letrangerv.vtester.domain.Question;
 import com.letrangerv.vtester.domain.QuizImpl;
 import com.letrangerv.vtester.persistence.OneAnswerQuestionDaoImpl;
@@ -29,7 +29,7 @@ public class QuizServiceImpl implements QuizService {
     private OptionDao m_optionDao;
 
     @Transactional
-    public void insertQuiz(QuizImpl quiz) {
+    public void insertQuiz(final QuizImpl quiz) {
         int quizId = m_quizDao.insert(quiz);
         List<Question> questions = quiz.getQuestions();
         questions.forEach(q -> {
@@ -46,12 +46,7 @@ public class QuizServiceImpl implements QuizService {
     }
 
     @Override
-    public List<QuizImpl> findAssignedQuizzes(String userName){
-        return m_quizDao.findAssignedQuizzes(userName);
-    }
-
-    @Override
-    public List<PassedQuiz> findPassedQuizzes(String userName) {
-        return m_quizDao.findPassedQuizzes(userName);
+    public List<AssignedQuiz> findQuizzesByUser(final String userName){
+        return m_quizDao.findQuizzesByUser(userName);
     }
 }

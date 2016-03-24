@@ -18,9 +18,10 @@ public class SqlPropertyBeanRegistry {
     private static final String QUIZ_SQL_PATH = "src/main/resources/sql/queries/quiz.xml";
     private static final String QUESTION_SQL_PATH = "src/main/resources/sql/queries/question.xml";
     private static final String OPTION_SQL_PATH = "src/main/resources/sql/queries/option.xml";
+    private static final String STUDENT_SQL_PATH = "src/main/resources/sql/queries/student.xml";
 
     @Bean
-    public final Properties quiz() {
+    public Properties quiz() {
         PropertiesFactoryBean propertiesFactoryBean = new PropertiesFactoryBean();
         propertiesFactoryBean.setLocation(new ClassPathResource(QUIZ_SQL_PATH));
         Properties properties = null;
@@ -34,7 +35,7 @@ public class SqlPropertyBeanRegistry {
     }
 
     @Bean
-    public final Properties question() {
+    public Properties question() {
         PropertiesFactoryBean propertiesFactoryBean = new PropertiesFactoryBean();
         propertiesFactoryBean.setLocation(
             new ClassPathResource(QUESTION_SQL_PATH)
@@ -50,10 +51,26 @@ public class SqlPropertyBeanRegistry {
     }
 
     @Bean
-    public final Properties option() {
+    public Properties option() {
         PropertiesFactoryBean propertiesFactoryBean = new PropertiesFactoryBean();
         propertiesFactoryBean.setLocation(
             new ClassPathResource(OPTION_SQL_PATH)
+        );
+        Properties properties = null;
+        try {
+            propertiesFactoryBean.afterPropertiesSet();
+            properties = propertiesFactoryBean.getObject();
+        } catch (IOException e) {
+            System.out.println("Cannot load properties file");
+        }
+        return properties;
+    }
+
+    @Bean
+    public Properties student() {
+        PropertiesFactoryBean propertiesFactoryBean = new PropertiesFactoryBean();
+        propertiesFactoryBean.setLocation(
+            new ClassPathResource(STUDENT_SQL_PATH)
         );
         Properties properties = null;
         try {

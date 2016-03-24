@@ -1,26 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
-  <entry key="assignedQuiz.select">
+  <entry key="assignedQuiz.select.by.user">
     select
-      title
+      title,
+      mark,
+      is_passed
     from assigned_quizzes aq
     join quizzes q
       on aq.quiz_id = q.quiz_id
     join students s
       on s.student_id = aq.student_id
-    where
-      s.email = ?
-  </entry>
-  <entry key="passedQuiz.select">
-    select
-      title,
-      mark
-    from passed_quizzes pq
-    join quizzes q
-      on pq.quiz_id = q.quiz_id
-    join students s
-      on s.student_id = pq.student_id
     where
       s.email = ?
   </entry>
