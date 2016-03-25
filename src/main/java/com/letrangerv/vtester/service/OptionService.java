@@ -11,4 +11,5 @@ import java.util.List;
  */
 public interface OptionService {
     List<Option> getByQuestionIds(List<Integer> questionIds);
+    void updateQuizResults(List<Integer> answerIds, int quizId);
 }

@@ -1,10 +1,7 @@
 package com.letrangerv.vtester.controller;
 
 import com.letrangerv.vtester.domain.*;
-import com.letrangerv.vtester.service.OneAnswerQuestionServiceImpl;
-import com.letrangerv.vtester.service.OptionService;
-import com.letrangerv.vtester.service.QuizService;
-import com.letrangerv.vtester.service.StudentService;
+import com.letrangerv.vtester.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,8 +9,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.servlet.http.HttpServletRequest;
 import java.security.Principal;
 import java.util.ArrayList;
+import java.util.Enumeration;
 import java.util.List;
 import java.util.Optional;
 
@@ -57,10 +56,10 @@ public class StudentController extends Utf8ContentController {
         return "student/studentAllQuizzes";
     }
 
-    @RequestMapping(path = "/pass/{title}", method = RequestMethod.GET)
-    public String passQuiz(Model model, @PathVariable final String title) {
+    @RequestMapping(path = "/pass/{assignedQuizId}", method = RequestMethod.GET)
+    public String passQuiz(Model model, @PathVariable final int assignedQuizId) {
         //TODO bind sent results to current user
-        List<OneAnswerQuestion> questions = questionService.getByQuiz(title);
+        List<OneAnswerQuestion> questions = questionService.getByQuiz(assignedQuizId);
         int[] questionIds = questions.stream().mapToInt(OneAnswerQuestion::getId).toArray();
 
         List<Integer> list = new ArrayList<>(questionIds.length);
@@ -81,6 +80,7 @@ public class StudentController extends Utf8ContentController {
         });
 
         model.addAttribute("questions", questions);
+        model.addAttribute("assignedQuizId", assignedQuizId);
 
         return "student/pass";
     }
@@ -96,9 +96,26 @@ public class StudentController extends Utf8ContentController {
     }
 
     @RequestMapping(path = "/quiz", method = RequestMethod.POST)
-    public String evaluateQuiz() {
-        //todo parse sent results, replace by json in future
+    public String evaluateQuiz(HttpServletRequest request) throws ServiceException {
+        ArrayList<Integer> answerIds = new ArrayList<>();
+        Enumeration<String> parameterNames = request.getParameterNames();
+        int assignedQuizId = -1;
 
+        while (parameterNames.hasMoreElements()) {
+            String paramName = parameterNames.nextElement();
+
+            if ("assignedQuizId".equals(paramName)) {
+                assignedQuizId = Integer.parseInt(request.getParameter(paramName));
+            } else {
+                answerIds.add(Integer.valueOf(request.getParameter(paramName)));
+            }
+        }
+
+        if (assignedQuizId == -1) {
+            throw new ServiceException("Failed to evaluate quiz: No assigned quiz found.");
+        }
+
+        optionService.updateQuizResults(answerIds, assignedQuizId);
         return "redirect:/student/success";
     }
 

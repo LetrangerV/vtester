@@ -6,6 +6,7 @@ drop table if exists classes;
 drop table if exists students;
 drop table if exists assigned_quizzes;
 drop table if exists supervisors;
+drop table if exists marks;
 
 create table quizzes(
   quiz_id int primary key auto_increment,
@@ -64,3 +65,19 @@ create table assigned_quizzes(
   foreign key (quiz_id) references quizzes(quiz_id) on update cascade on delete cascade,
   foreign key (student_id) references students(student_id) on update cascade on delete cascade
 );
+
+create table marks(
+  mark_id int primary key auto_increment,
+  mark int,
+  lower_bound int,
+  upper_bound int
+);
+
+-- ALTER TABLE quizzes CONVERT TO CHARACTER SET utf8 COLLATE utf8_general_ci;
+-- ALTER TABLE question_types CONVERT TO CHARACTER SET utf8 COLLATE utf8_general_ci;
+-- ALTER TABLE questions CONVERT TO CHARACTER SET utf8 COLLATE utf8_general_ci;
+-- ALTER TABLE options CONVERT TO CHARACTER SET utf8 COLLATE utf8_general_ci;
+-- ALTER TABLE classes CONVERT TO CHARACTER SET utf8 COLLATE utf8_general_ci;
+-- ALTER TABLE students CONVERT TO CHARACTER SET utf8 COLLATE utf8_general_ci;
+-- ALTER TABLE assigned_quizzes CONVERT TO CHARACTER SET utf8 COLLATE utf8_general_ci;
+-- ALTER TABLE supervisors TO CHARACTER SET utf8 COLLATE utf8_general_ci;

@@ -30,4 +30,13 @@
     where
       question_id in (:ids)
   </entry>
+  <entry key="option.select.count.right">
+    select
+      count(*)
+    from options
+    where
+      option_id in (:ids)
+    and
+      is_right=TRUE
+  </entry>
 </properties>

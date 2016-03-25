@@ -26,6 +26,8 @@
     <#assign questionCounter = questionCounter + 1>
 </div>
 </#list>
+  <input type="hidden" name="assignedQuizId" value="${assignedQuizId}">
+
   <input type="submit" value="Отправить"/>
 </form>
 

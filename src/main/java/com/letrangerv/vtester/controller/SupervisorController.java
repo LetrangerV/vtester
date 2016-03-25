@@ -35,7 +35,10 @@ public class SupervisorController extends Utf8ContentController {
     }
 
     @RequestMapping(path = "/students/{className}", method = RequestMethod.GET)
-    public final String findStudentsAndMarksByClass(final Model model, @PathVariable final String className) {
+    public final String findStudentsAndMarksByClass(
+        final Model model,
+        @PathVariable final String className
+    ) {
         List<Student> students = studentService.findByClass(className);
         List<AssignedQuiz> quizzes = studentService.findQuizzesByClass(className);
         model.addAttribute("students", students);

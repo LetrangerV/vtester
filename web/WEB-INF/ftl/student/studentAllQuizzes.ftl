@@ -19,11 +19,10 @@
     </tr>
     </thead>
     <tbody>
-<#if passedQuizzes??>
+<#if assignedQuizzes??>
     <#list assignedQuizzes as aQuiz>
     <tr class='${["alt", ""][aQuiz_index%2]}'>
-      <td><a href="/student/pass/${aQuiz.quiz.title}">${aQuiz.quiz.title}</a></td>
-      <#--<td><a href="/pass?title=${aQuiz.title}">${aQuiz.title}</a></td>-->
+      <td><a href="/student/pass/${aQuiz.id}">${aQuiz.quiz.title}</a></td>
     <#--<td>${aQuiz.deadline}</td>-->
     </tr>
     </#list>
@@ -43,12 +42,12 @@
       </thead>
     <tbody>
     <#if passedQuizzes??>
-    <#list passedQuizzes as pQuiz>
-    <tr class='${["alt", ""][pQuiz_index%2]}'>
-      <td>${pQuiz.quiz.title}</td>
-      <td>${pQuiz.mark}</td>
-    </tr>
-    </#list>
+        <#list passedQuizzes as pQuiz>
+        <tr class='${["alt", ""][pQuiz_index%2]}'>
+          <td>${pQuiz.quiz.title}</td>
+          <td>${pQuiz.mark}</td>
+        </tr>
+        </#list>
     </#if>
     </tbody>
   </table>

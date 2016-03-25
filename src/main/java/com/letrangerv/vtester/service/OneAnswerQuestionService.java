@@ -10,5 +10,5 @@ import java.util.List;
  * @since 3/21/16
  */
 public interface OneAnswerQuestionService {
-    List<OneAnswerQuestion> getByQuiz(String title);
+    List<OneAnswerQuestion> getByQuiz(int quizId);
 }

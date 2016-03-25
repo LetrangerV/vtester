@@ -7,7 +7,7 @@ import java.util.List;
  * @version 1.0
  * @since 2/29/16
  */
-public class QuizImpl {
+public class QuizImpl extends Entity {
     private List<Question> questions;
     private String title;
 

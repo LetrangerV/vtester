@@ -1,3 +1,6 @@
+drop database if exists vtester;
+CREATE DATABASE vtester CHARACTER SET utf8 COLLATE utf8_general_ci;
+
 create table quizzes(
   quiz_id int primary key auto_increment,
   title varchar(100)
@@ -58,4 +61,11 @@ create table assigned_quizzes(
   student_id int,
   constraint 'fk__assigned_quizzes__quizzes' foreign key (quiz_id) references quizzes(quiz_id) on update cascade on delete cascade,
   constraint 'fk__assigned_quizzes__students' foreign key (student_id) references students(student_id) on update cascade on delete cascade
+);
+
+create table marks(
+  mark_id int primary key auto_increment,
+  mark int,
+  lower_bound int,
+  upper_bound int
 );

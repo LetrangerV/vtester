@@ -6,7 +6,7 @@ package com.letrangerv.vtester.domain;
  * @since 3/17/16
  */
 @SuppressWarnings("unused")
-public class AssignedQuiz {
+public class AssignedQuiz extends Entity {
     private QuizImpl quiz;
     private Integer mark;
     private boolean isPassed;
@@ -23,7 +23,7 @@ public class AssignedQuiz {
         return mark;
     }
 
-    public final void setMark(Integer mark) {
+    public final void setMark(final Integer mark) {
         this.mark = mark;
     }
 
@@ -31,7 +31,7 @@ public class AssignedQuiz {
         return isPassed;
     }
 
-    public final void setPassed(boolean passed) {
+    public final void setPassed(final boolean passed) {
         isPassed = passed;
     }
 }

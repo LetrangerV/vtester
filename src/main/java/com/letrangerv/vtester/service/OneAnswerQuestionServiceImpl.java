@@ -17,7 +17,7 @@ public class OneAnswerQuestionServiceImpl implements OneAnswerQuestionService {
     @Autowired
     private OneAnswerQuestionDaoImpl questionDao;
 
-    public final List<OneAnswerQuestion> getByQuiz(final String title) {
-        return questionDao.getByQuiz(title);
+    public final List<OneAnswerQuestion> getByQuiz(final int quizId) {
+        return questionDao.getByQuiz(quizId);
     }
 }

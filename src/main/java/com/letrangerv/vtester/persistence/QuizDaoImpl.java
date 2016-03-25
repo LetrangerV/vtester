@@ -58,8 +58,10 @@ public class QuizDaoImpl implements QuizDao {
             queries.getProperty(SELECT_QUIZZES_BY_USER),
             (resultSet, i) -> {
                 QuizImpl quiz = new QuizImpl(resultSet.getString("title"));
+                quiz.setId(resultSet.getInt("quiz_id"));
                 AssignedQuiz assignedQuiz = new AssignedQuiz();
                 assignedQuiz.setQuiz(quiz);
+                assignedQuiz.setId(resultSet.getInt("assigned_quiz_id"));
                 assignedQuiz.setMark(resultSet.getInt("mark"));
                 assignedQuiz.setPassed(resultSet.getBoolean("is_passed"));
                 return assignedQuiz;

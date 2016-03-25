@@ -8,12 +8,7 @@
       type_id
     from questions
     where
-      quiz_id=(
-        select
-          quiz_id
-        from quizzes
-        where
-          title=?)
+      quiz_id=?
   </entry>
   <entry key="question.insert">
     insert

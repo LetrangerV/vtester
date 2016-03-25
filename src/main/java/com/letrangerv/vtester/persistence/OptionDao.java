@@ -12,4 +12,6 @@ import java.util.List;
 public interface OptionDao {
     int[] batchAdd(List<Option> options, int questionId);
     List<Option> getByQuestionIds(List<Integer> questionIds);
+    int getRightAnswersCount(List<Integer> answerIds);
+    void evaluate(double rightAnswersPercentage, int quizId);
 }

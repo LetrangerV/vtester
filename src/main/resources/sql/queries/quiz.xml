@@ -3,6 +3,8 @@
 <properties>
   <entry key="assignedQuiz.select.by.user">
     select
+      aq.assigned_quiz_id,
+      q.quiz_id,
       title,
       mark,
       is_passed
@@ -20,5 +22,21 @@
     (title)
     values
     (?)
+  </entry>
+  <entry key="quiz.update.mark">
+    update assigned_quizzes
+    set
+      is_passed = TRUE,
+      mark = (
+        select
+          mark
+        from marks
+        where
+          (:percentage) >= lower_bound
+        and
+          upper_bound >= (:percentage)
+        )
+    where
+      assigned_quiz_id = (:id)
   </entry>
 </properties>

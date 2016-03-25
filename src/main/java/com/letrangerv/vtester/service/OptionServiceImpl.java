@@ -15,11 +15,28 @@ import java.util.List;
 @Component
 @SuppressWarnings("unused")
 public class OptionServiceImpl implements OptionService {
+    private static final double PERCENT = 100.0;
+
     @Autowired
     private OptionDao optionDao;
 
     @Override
     public final List<Option> getByQuestionIds(final List<Integer> questionIds) {
         return optionDao.getByQuestionIds(questionIds);
+    }
+
+    @Override
+    public final void updateQuizResults(final List<Integer> answerIds, final int quizId) {
+        int rightAnswersCount = optionDao.getRightAnswersCount(answerIds);
+        evaluate(rightAnswersCount, answerIds.size(), quizId);
+    }
+
+    private void evaluate(
+        final int rightAnswersCount,
+        final int totalAnswersCount,
+        final int quizId
+    ) {
+        double rightAnswersPercentage = PERCENT * rightAnswersCount/totalAnswersCount;
+        optionDao.evaluate(rightAnswersPercentage, quizId);
     }
 }

@@ -51,7 +51,7 @@ public class OneAnswerQuestionDaoImpl implements OneAnswerQuestionDao {
         return keyHolder.getKey().intValue();
     }
 
-    public List<OneAnswerQuestion> getByQuiz(final String title) {
+    public List<OneAnswerQuestion> getByQuiz(final int quizId) {
         return m_jdbcTemplate.query(
             queries.getProperty(SELECT_QUESTIONS_BY_QUIZ),
             (resultSet, i) -> {
@@ -62,6 +62,6 @@ public class OneAnswerQuestionDaoImpl implements OneAnswerQuestionDao {
             //type id is omitted for now
             return question;
         },
-            title);
+            quizId);
     }
 }

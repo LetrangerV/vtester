@@ -11,5 +11,5 @@ import java.util.List;
  */
 public interface OneAnswerQuestionDao {
     int add(OneAnswerQuestion question, final int quizId, final String type);
-    List<OneAnswerQuestion> getByQuiz(final String title);
+    List<OneAnswerQuestion> getByQuiz(final int quizId);
 }

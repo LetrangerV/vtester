@@ -37,7 +37,7 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public List<AssignedQuiz> findQuizzesByClass(final String className) {
+    public final List<AssignedQuiz> findQuizzesByClass(final String className) {
         return studentDao.findQuizzesByClass(className);
     }
 }

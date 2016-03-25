@@ -19,25 +19,32 @@ import java.util.Properties;
 @Component
 @SuppressWarnings("unused")
 public class OptionDaoImpl implements OptionDao {
-    public static final String SELECT_OPTIONS_BY_QUESTIONS = "option.select.by.questions";
+    private static final String SELECT_OPTIONS_BY_QUESTIONS = "option.select.by.questions";
+    private static final String SELECT_RIGHT_ANSWERS_COUNT = "option.select.count.right";
+    private static final String EVALUATE_QUIZ = "quiz.update.mark";
+
     private NamedParameterJdbcTemplate jdbcTemplate;
     @SuppressWarnings("MismatchedQueryAndUpdateOfCollection")
     @Autowired
     @Qualifier("option")
     private Properties queries;
+    @SuppressWarnings("MismatchedQueryAndUpdateOfCollection")
+    @Autowired
+    @Qualifier("quiz")
+    private Properties quizQueries;
 
     @Autowired
-    public void setDataSource(DataSource dataSource) {
+    public void setDataSource(final DataSource dataSource) {
         jdbcTemplate = new NamedParameterJdbcTemplate(dataSource);
     }
 
     @Override
-    public int[] batchAdd(List<Option> options, int questionId) {
+    public int[] batchAdd(final List<Option> options, final int questionId) {
         return null;
     }
 
     @Override
-    public List<Option> getByQuestionIds(List<Integer> questionIds) {
+    public List<Option> getByQuestionIds(final List<Integer> questionIds) {
         MapSqlParameterSource map = new MapSqlParameterSource();
         map.addValue("ids", questionIds);
         return jdbcTemplate.query(queries.getProperty(SELECT_OPTIONS_BY_QUESTIONS), map,
@@ -50,5 +57,26 @@ public class OptionDaoImpl implements OptionDao {
             return option;
         }
             );
+    }
+
+    @Override
+    public int getRightAnswersCount(final List<Integer> answerIds) {
+        MapSqlParameterSource map = new MapSqlParameterSource();
+        map.addValue("ids", answerIds);
+        return jdbcTemplate.queryForObject(
+            queries.getProperty(SELECT_RIGHT_ANSWERS_COUNT),
+            map,
+            Integer.class);
+    }
+
+    @Override
+    public void evaluate(final double rightAnswersPercentage, final int assignedQuizId) {
+        MapSqlParameterSource map = new MapSqlParameterSource();
+        map.addValue("percentage", rightAnswersPercentage);
+        map.addValue("id", assignedQuizId);
+        jdbcTemplate.update(
+            quizQueries.getProperty(EVALUATE_QUIZ),
+            map
+        );
     }
 }
